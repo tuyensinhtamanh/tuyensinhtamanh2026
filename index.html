@@ -48,5 +48,29 @@
         <input type="text" placeholder="Nhập câu hỏi..." class="flex-grow p-3 rounded-2xl border border-gray-300 text-sm focus:outline-none">
         <button class="bg-red-600 text-white p-3 rounded-2xl shadow-lg"><i class="fas fa-paper-plane"></i></button>
     </footer>
+   <script>
+  const CHATBOT_ID = "AS2XGuuQFElIoKtBSXEKN"; // ID tôi vừa tìm thấy trong code của bạn
+
+  async function handleChat() {
+    const input = document.querySelector('input[placeholder="Nhập câu hỏi..."]');
+    const query = input.value.trim();
+    if (!query) return;
+
+    // Lệnh này gửi câu hỏi từ ô nhập của bạn tới hệ thống Chatbase
+    window.chatbase("send", { message: query });
+    input.value = "";
+  }
+
+  // Kết nối nút bấm màu đỏ với hàm gửi tin
+  document.querySelector('button.bg-red-600').onclick = handleChat;
+  
+  // Nhấn Enter để gửi
+  document.querySelector('input[placeholder="Nhập câu hỏi..."]').onkeypress = (e) => {
+    if(e.key === 'Enter') handleChat();
+  };
+
+  // Đoạn mã nhúng Chatbase của bạn
+  (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id=CHATBOT_ID;script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+</script>
 </body>
 </html>
