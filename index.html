@@ -3,117 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trợ lý Tuyển sinh CAND 2026</title>
+    <title>Hệ thống Tra cứu Tuyển sinh CAND 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .header-gradient { background: linear-gradient(180deg, #b20a0a 0%, #e61919 100%); }
-        .chat-container { background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 20px 20px; height: calc(100vh - 180px); }
-        .hidden { display: none; }
-        .modal-active { transform: translateY(0) !important; }
+        body { background-color: #f1f5f9; font-family: 'Segoe UI', Tahoma, sans-serif; overflow: hidden; }
+        .header-red { background: linear-gradient(180deg, #b20a0a 0%, #e61919 100%); }
+        .chat-area { height: calc(100vh - 260px); }
+        .user-msg { background: #e61919; color: white; border-radius: 15px 15px 2px 15px; align-self: flex-end; }
+        .bot-msg { background: white; border: 1px solid #e2e8f0; border-radius: 15px 15px 15px 2px; align-self: flex-start; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .data-card { border-left: 4px solid #e61919; background: #fff; padding: 10px; margin-bottom: 8px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
     </style>
 </head>
-<body class="max-w-md mx-auto shadow-2xl min-h-screen flex flex-col bg-white relative overflow-hidden">
+<body class="max-w-md mx-auto shadow-2xl min-h-screen flex flex-col bg-white relative">
 
-    <header class="header-gradient text-white p-5 text-center relative shadow-md">
-        <button onclick="toggleModal()" class="absolute right-4 top-5 bg-yellow-500/30 p-2 rounded-lg border border-yellow-400/50">
-            <i class="fas fa-list-ul text-yellow-300"></i>
-        </button>
-        <p class="text-[10px] font-bold tracking-[0.2em] opacity-80 uppercase">Công an xã Tam Anh</p>
-        <h1 class="text-lg font-bold mt-1 uppercase">Tuyển sinh CAND 2026</h1>
+    <header class="header-red text-white p-4 flex justify-between items-center shadow-lg">
+        <div class="flex items-center gap-2">
+            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-inner">
+                <i class="fas fa-shield-alt text-red-600 text-xl"></i>
+            </div>
+            <div>
+                <h1 class="text-xs font-bold uppercase tracking-tighter">CSDL Tuyển sinh 2026</h1>
+                <p class="text-[10px] text-yellow-300">Công an xã Tam Anh</p>
+            </div>
+        </div>
+        <button onclick="quickAsk('liên hệ')" class="bg-white/20 px-3 py-1 rounded text-[10px] font-bold border border-white/30 uppercase">Hotline</button>
     </header>
 
-    <main class="chat-container flex-grow p-4 overflow-y-auto" id="chat-box">
-        <div class="bg-red-50 p-4 rounded-xl border-l-4 border-red-600 shadow-sm mb-4">
-            <p class="text-sm text-gray-800">🫡 Chào đồng chí! Tôi đã nạp toàn bộ dữ liệu <b>Tuyển sinh 2026</b> từ Phòng PX01. Đồng chí cần tra cứu gì? (Ví dụ: <i>chỉ tiêu T01, điều kiện sức khỏe, mã bài thi...</i>)</p>
+    <main id="chatBox" class="chat-area p-4 overflow-y-auto flex flex-col gap-4 bg-slate-50">
+        <div class="bot-msg p-3 max-w-[90%] shadow-sm">
+            <p class="text-[11px] font-bold text-red-600 uppercase mb-1">Hệ thống thông báo:</p>
+            <p class="text-sm text-gray-700">Chào đồng chí! Dữ liệu từ 6 Phụ lục đã được sẵn sàng. Hãy chọn mục cần tra cứu sâu bên dưới.</p>
         </div>
-        <div id="messages" class="space-y-4"></div>
+        <div id="history" class="flex flex-col gap-4"></div>
     </main>
 
-    <footer class="p-4 bg-gray-50 flex items-center gap-2 border-t">
-        <input type="text" id="userInput" placeholder="Hỏi về chỉ tiêu, mã bài, sức khỏe..." class="flex-grow p-3 rounded-2xl border border-gray-300 text-sm focus:outline-none">
-        <button onclick="handleSearch()" class="bg-red-600 text-white p-3 rounded-2xl shadow-lg"><i class="fas fa-search"></i></button>
-    </footer>
-
-    <div id="data-modal" class="fixed inset-0 bg-white z-[100] flex flex-col translate-y-full transition-transform duration-300 shadow-2xl">
-        <div class="header-gradient p-4 flex justify-between items-center text-white">
-            <h2 class="font-bold uppercase text-sm">Tra cứu nhanh dữ liệu</h2>
-            <button onclick="toggleModal()" class="text-2xl">&times;</button>
-        </div>
-        <div class="flex border-b text-[11px] font-bold uppercase text-gray-500 bg-white">
-            <button onclick="showTab('suc-khoe')" class="flex-1 py-4 text-center border-b-2 border-red-600 text-red-600">Sức khỏe</button>
-            <button onclick="showTab('chi-tieu')" class="flex-1 py-4 text-center">Chỉ tiêu</button>
-            <button onclick="showTab('lien-he')" class="flex-1 py-4 text-center">Liên hệ</button>
-        </div>
-        <div id="modal-content" class="p-4 overflow-y-auto flex-grow bg-gray-50 space-y-4">
-            </div>
+    <div class="bg-white border-t p-2 overflow-x-auto flex gap-2 no-scrollbar shadow-inner">
+        <button onclick="quickAsk('sức khỏe')" class="whitespace-nowrap px-4 py-2 bg-red-600 text-white rounded-lg text-[10px] font-bold uppercase shadow-md">🏥 Sức khỏe</button>
+        <button onclick="quickAsk('đại học')" class="whitespace-nowrap px-4 py-2 bg-red-600 text-white rounded-lg text-[10px] font-bold uppercase shadow-md">🎓 Chỉ tiêu ĐH</button>
+        <button onclick="quickAsk('trung cấp')" class="whitespace-nowrap px-4 py-2 bg-red-600 text-white rounded-lg text-[10px] font-bold uppercase shadow-md">🎖️ Trung cấp</button>
+        <button onclick="quickAsk('mã bài')" class="whitespace-nowrap px-4 py-2 bg-red-600 text-white rounded-lg text-[10px] font-bold uppercase shadow-md">📝 Mã bài thi</button>
+        <button onclick="quickAsk('hồ sơ')" class="whitespace-nowrap px-4 py-2 bg-slate-700 text-white rounded-lg text-[10px] font-bold uppercase shadow-md">📁 Hồ sơ</button>
     </div>
 
+    <footer class="p-3 bg-white border-t flex items-center gap-2">
+        <input type="text" id="userInput" placeholder="Nhập câu hỏi tự do..." class="flex-grow p-3 rounded-xl border border-gray-300 text-sm focus:outline-none focus:border-red-600 bg-gray-50">
+        <button onclick="handleAsk()" class="bg-red-600 text-white w-12 h-12 rounded-xl shadow-lg flex items-center justify-center active:scale-95 transition">
+            <i class="fas fa-paper-plane"></i>
+        </button>
+    </footer>
+
     <script>
-        // "TÚI KHÔN" ĐƯỢC TRÍCH XUẤT TỪ FILE CỦA BẠN
-        const DATABASE = [
-            { key: ["chi tiêu", "t01", "an ninh"], content: "<b>Học viện An ninh nhân dân (T01):</b> Tổng 500 chỉ tiêu. Trong đó: Nghiệp vụ An ninh (Phía Bắc): 250; An ninh mạng (Toàn quốc): 150; CNTT (Toàn quốc): 100." },
-            { key: ["chi tiêu", "t02", "cảnh sát"], content: "<b>Học viện Cảnh sát nhân dân (T02):</b> 400 chỉ tiêu Nhóm ngành nghiệp vụ Cảnh sát (Phía Bắc)." },
-            { key: ["sức khỏe", "chiều cao", "bmi"], content: "<b>Tiêu chuẩn sức khỏe:</b> Đủ tiêu chuẩn theo Thông tư 62/2023/TT-BCA. BMI từ 18.5 đến 30. Chiều cao Nam 1m64-1m95, Nữ 1m58-1m80 (Ưu tiên dân tộc thiểu số)." },
-            { key: ["mã bài thi", "ca1", "ca2", "ca3", "ca4"], content: "<b>Mã bài thi Bộ Công an:</b> CA1 (Toán, Văn, Sử, Anh + Lý), CA2 (+ Hóa), CA3 (+ Sinh), CA4 (+ Địa). Thời gian: 180 phút. Ngày thi: 21/6/2026." },
-            { key: ["trung cấp", "t08", "t09", "t10"], content: "<b>Chỉ tiêu Trung cấp:</b> T08 (Toàn quốc): 80; T09 (Phía Bắc): 100; T10 (Phía Nam): Đang cập nhật." },
-            { key: ["liên hệ", "số điện thoại"], content: "<b>Thông tin hỗ trợ:</b> Cán bộ tuyển sinh Đại úy Phạm Đình Nga - SĐT: 0905.771.287." },
-            { key: ["văn bằng 2", "vb2"], content: "<b>Tuyển sinh VB2:</b> T01 (130 chỉ tiêu), T02 (100 chỉ tiêu), T04 (100 chỉ tiêu). Thi tuyển ngày 20/9/2026 trên máy tính." }
-        ];
+        const DATABASE = {
+            "sức khỏe": `
+                <div class="data-card">
+                    <p class="font-bold text-red-700 mb-1">CHIỀU CAO & BMI</p>
+                    <p class="text-[13px]">• Nam: 1m64 - 1m95<br>• Nữ: 1m58 - 1m80<br>• BMI: 18.5 - 30</p>
+                    <p class="text-[11px] text-blue-600 mt-1 italic">* Ưu tiên người DTTS: Nam ≥ 1m62, Nữ ≥ 1m56</p>
+                </div>
+                <div class="data-card">
+                    <p class="font-bold text-red-700 mb-1">THỊ LỰC (MẮT)</p>
+                    <p class="text-[13px]">• Không quá 3 diop.<br>• Không loạn thị.<br>• Kiểm tra sắc giác (mù màu).</p>
+                </div>`,
+            
+            "đại học": `
+                <div class="data-card">
+                    <p class="font-bold text-red-700 mb-1 uppercase">Chỉ tiêu Học viện/Đại học (Phụ lục 01)</p>
+                    <table class="w-full text-[12px] border-collapse mt-2">
+                        <tr class="bg-red-50 text-red-700">
+                            <th class="border p-1">Trường</th><th class="border p-1">Ký hiệu</th><th class="border p-1">Chỉ tiêu</th>
+                        </tr>
+                        <tr><td class="border p-1">HV An ninh</td><td class="border p-1 text-center">T01</td><td class="border p-1 text-center font-bold">500</td></tr>
+                        <tr><td class="border p-1">HV Cảnh sát</td><td class="border p-1 text-center">T02</td><td class="border p-1 text-center font-bold">500</td></tr>
+                        <tr><td class="border p-1">ĐH PCCC</td><td class="border p-1 text-center">T06</td><td class="border p-1 text-center font-bold">200</td></tr>
+                        <tr><td class="border p-1">HV Chính trị</td><td class="border p-1 text-center">T03</td><td class="border p-1 text-center font-bold">150</td></tr>
+                    </table>
+                </div>`,
+            
+            "trung cấp": `
+                <div class="data-card">
+                    <p class="font-bold text-red-700 mb-1 uppercase">Hệ Trung cấp (Phụ lục 05)</p>
+                    <p class="text-[13px]">• <b>T08 (An ninh):</b> 80 chỉ tiêu (Toàn quốc)<br>• <b>T09 (Cảnh sát I):</b> 100 chỉ tiêu (Phía Bắc)<br>• <b>T10 (Cảnh sát II):</b> 100 chỉ tiêu (Phía Nam)</p>
+                    <p class="text-[11px] text-gray-500 mt-1 italic">Dành cho chiến sĩ nghĩa vụ và học sinh phổ thông.</p>
+                </div>`,
+            
+            "mã bài": `
+                <div class="data-card">
+                    <p class="font-bold text-red-700 mb-1 uppercase">Bài thi đánh giá BCA (Phụ lục 02)</p>
+                    <p class="text-[13px]"><b>CA1:</b> Toán + Trắc nghiệm KHTN<br><b>CA2:</b> Toán + Trắc nghiệm KHXH</p>
+                    <p class="text-[13px] mt-2"><b>Tổ hợp xét tuyển:</b> A00, A01, B00, C03, D01...</p>
+                </div>`,
 
-        function toggleModal() {
-            document.getElementById('data-modal').classList.toggle('modal-active');
-            showTab('suc-khoe');
+            "hồ sơ": `
+                <div class="data-card">
+                    <p class="font-bold text-red-700 mb-1 uppercase">Thủ tục đăng ký</p>
+                    <p class="text-[13px]">1. Phiếu đăng ký dự tuyển.<br>2. Giấy khai sinh, CCCD.<br>3. Học bạ THPT.<br>4. Quyết định xuất ngũ (nếu có).<br>5. Giấy xác nhận Đoàn/Đảng.</p>
+                    <p class="text-blue-600 font-bold mt-2">LH: Đ/c Nga - 0905.771.287</p>
+                </div>`,
+
+            "liên hệ": `
+                <div class="data-card text-center">
+                    <p class="font-bold text-red-700 uppercase">Phòng Tổ chức cán bộ - PX01</p>
+                    <p class="text-sm my-2 italic text-gray-700">Giải đáp thắc mắc tuyển sinh:</p>
+                    <a href="tel:0905771287" class="text-xl font-black text-blue-700">0905.771.287</a>
+                    <p class="text-[12px] font-bold mt-2 uppercase">Đại úy Phạm Đình Nga</p>
+                </div>`
+        };
+
+        function quickAsk(key) {
+            renderMsg(key.toUpperCase(), 'user');
+            setTimeout(() => {
+                let found = DATABASE[key] || "Tôi chưa tìm thấy dữ liệu mục này.";
+                renderMsg(found, 'bot');
+            }, 300);
         }
 
-        function showTab(type) {
-            let html = "";
-            if(type === 'suc-khoe') {
-                html = `<div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-red-600">
-                    <h3 class="font-bold text-red-700 text-xs uppercase">● Chiều cao & BMI</h3>
-                    <p class="text-sm mt-2 text-gray-700">- Nam: 1m64 - 1m95<br>- Nữ: 1m58 - 1m80<br>- BMI: 18.5 - 30</p>
-                </div>`;
-            } else if(type === 'chi-tieu') {
-                html = `<div class="space-y-2">
-                    <div class="bg-white p-3 rounded shadow-sm text-sm"><b>T01:</b> 500 chỉ tiêu</div>
-                    <div class="bg-white p-3 rounded shadow-sm text-sm"><b>T02:</b> 400 chỉ tiêu</div>
-                    <div class="bg-white p-3 rounded shadow-sm text-sm"><b>T06:</b> 200 chỉ tiêu</div>
-                </div>`;
-            } else {
-                html = `<p class="text-sm text-gray-600">Mọi thắc mắc liên hệ: <b>0905.771.287</b> (Đ/c Nga)</p>`;
-            }
-            document.getElementById('modal-content').innerHTML = html;
-        }
-
-        function handleSearch() {
+        function handleAsk() {
             const input = document.getElementById('userInput');
-            const query = input.value.toLowerCase();
+            const query = input.value.toLowerCase().trim();
             if(!query) return;
-
-            addMessage(input.value, 'user');
+            renderMsg(input.value, 'user');
             
-            let result = "Xin lỗi, tôi chưa tìm thấy thông tin này trong file dữ liệu 2026. Đồng chí vui lòng liên hệ 0905.771.287 để được giải đáp trực tiếp.";
-            
-            for(let item of DATABASE) {
-                if(item.key.some(k => query.includes(k))) {
-                    result = item.content;
+            let result = "Đồng chí có thể thử bấm các nút <b>Sức khỏe, Chỉ tiêu, Mã bài...</b> để xem bảng dữ liệu chi tiết, hoặc liên hệ <b>0905.771.287</b>.";
+            for(let key in DATABASE) {
+                if(query.includes(key)) {
+                    result = DATABASE[key];
                     break;
                 }
             }
-
-            setTimeout(() => addMessage(result, 'bot'), 500);
+            setTimeout(() => renderMsg(result, 'bot'), 400);
             input.value = "";
         }
 
-        function addMessage(text, sender) {
+        function renderMsg(text, type) {
+            const history = document.getElementById('history');
             const div = document.createElement('div');
-            div.className = `flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
-            div.innerHTML = `<div class="${sender === 'user' ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-800'} p-3 rounded-2xl max-w-[80%] text-sm shadow-sm">${text}</div>`;
-            document.getElementById('messages').appendChild(div);
-            document.getElementById('chat-box').scrollTop = document.getElementById('chat-box').scrollHeight;
+            div.className = `flex ${type === 'user' ? 'justify-end' : 'justify-start'}`;
+            div.innerHTML = `<div class="${type === 'user' ? 'user-msg' : 'bot-msg'} p-3 max-w-[90%] shadow-sm text-sm">${text}</div>`;
+            history.appendChild(div);
+            document.getElementById('chatBox').scrollTop = document.getElementById('chatBox').scrollHeight;
         }
 
-        document.getElementById('userInput').addEventListener('keypress', (e) => { if(e.key === 'Enter') handleSearch(); });
+        document.getElementById('userInput').addEventListener('keypress', (e) => { if(e.key === 'Enter') handleAsk(); });
     </script>
 </body>
 </html>
