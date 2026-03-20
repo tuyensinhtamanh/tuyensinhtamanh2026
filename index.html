@@ -7,116 +7,132 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background-color: #f1f5f9; font-family: 'Segoe UI', Tahoma, sans-serif; overflow: hidden; }
-        .header-red { background: linear-gradient(180deg, #b20a0a 0%, #e61919 100%); }
-        .chat-area { height: calc(100vh - 280px); background-color: #f8fafc; }
-        .bot-msg { background: white; border: 1px solid #e2e8f0; border-radius: 18px 18px 18px 2px; align-self: flex-start; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .user-msg { background: #e61919; color: white; border-radius: 18px 18px 2px 18px; align-self: flex-end; }
-        .suggest-btn { border: 1px solid #e61919; color: #e61919; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 600; background: white; margin-top: 8px; margin-right: 6px; transition: all 0.2s; display: inline-block; }
-        .suggest-btn:active { background: #fff5f5; transform: scale(0.95); }
-        .nav-btn { whitespace: nowrap; padding: 8px 20px; background-color: #fff5f5; border: 1px solid #fed7d7; color: #c53030; font-weight: bold; font-size: 11px; border-radius: 9999px; transition: 0.2s; }
+        body { background-color: #f1f5f9; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
+        .header-red { background: #b20a0a; }
+        .chat-area { height: calc(100vh - 280px); }
+        .bot-msg { background: white; border-radius: 15px 15px 15px 2px; align-self: flex-start; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .user-msg { background: #e61919; color: white; border-radius: 15px 15px 2px 15px; align-self: flex-end; }
+        .suggest-btn { border: 1px solid #e61919; color: #e61919; padding: 6px 12px; border-radius: 10px; font-size: 11px; font-weight: 600; background: white; margin-top: 8px; cursor: pointer; }
+        .nav-btn { whitespace: nowrap; padding: 8px 15px; background: #fff5f5; border: 1px solid #fed7d7; color: #c53030; font-weight: bold; font-size: 11px; border-radius: 8px; }
+        #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 50; overflow-y: auto; }
+        .tab-btn { padding: 10px; font-size: 12px; font-weight: bold; color: #666; border-bottom: 2px solid transparent; }
+        .tab-btn.active { color: #b20a0a; border-bottom: 2px solid #b20a0a; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
 <body class="max-w-md mx-auto shadow-2xl min-h-screen flex flex-col bg-white relative">
 
-    <header class="header-red text-white p-5 text-center shadow-lg">
-        <p class="text-[10px] font-bold tracking-widest opacity-80 uppercase">Trợ lý ảo</p>
-        <h1 class="text-xl font-bold mt-1 uppercase">Tuyển sinh CAND 2026</h1>
-        <p class="text-[11px] font-semibold text-yellow-300">CÔNG AN TỈNH QUẢNG TRỊ</p>
+    <header class="header-red text-white p-5 text-center relative">
+        <button onclick="toggleOverlay()" class="absolute right-4 top-5 text-xl"><i class="fas fa-bars"></i></button>
+        <p class="text-[10px] font-bold tracking-widest opacity-80">TRỢ LÝ ẢO</p>
+        <h1 class="text-xl font-bold uppercase">Tuyển sinh CAND 2026</h1>
+        <p class="text-[11px] text-yellow-300">CÔNG AN TỈNH QUẢNG TRỊ</p>
     </header>
 
-    <main id="chatBox" class="chat-area p-4 overflow-y-auto flex flex-col gap-4">
-        <div class="bot-msg p-4 max-w-[95%]">
-            <p class="text-sm text-gray-800 leading-relaxed">
-                Chào đồng chí! Tôi là trợ lý hỗ trợ tra cứu nhanh về: <b>đối tượng, điều kiện, thời gian, hồ sơ, lệ phí, VB2CA, trung cấp, sức khỏe và thể lực.</b>
-            </p>
+    <main id="chatBox" class="chat-area p-4 overflow-y-auto flex flex-col gap-4 bg-slate-50">
+        <div class="bot-msg p-4 max-w-[90%] border">
+            <p class="text-sm"><b>Tỉnh Quảng Trị:</b><br>Đồng chí, thí sinh hoặc phụ huynh có thể tra cứu nhanh về đối tượng, điều kiện, chỉ tiêu, VB2CA, trung cấp, sức khỏe...</p>
         </div>
         <div id="history" class="flex flex-col gap-4"></div>
     </main>
 
-    <div class="bg-white px-2 py-3 border-t">
-        <div class="flex overflow-x-auto space-x-2 no-scrollbar px-2">
-            <button onclick="askData('Đại học')" class="nav-btn uppercase">Đại học</button>
-            <button onclick="askData('VB2CA')" class="nav-btn uppercase">VB2CA</button>
-            <button onclick="askData('Trung cấp')" class="nav-btn uppercase">Trung cấp</button>
-            <button onclick="askData('Thời gian')" class="nav-btn uppercase">Thời gian</button>
-            <button onclick="askData('Thể lực')" class="nav-btn uppercase">Thể lực</button>
-        </div>
+    <div class="bg-white px-2 py-3 border-t flex overflow-x-auto space-x-2 no-scrollbar">
+        <button onclick="botAction('daihoc')" class="nav-btn">ĐẠI HỌC</button>
+        <button onclick="botAction('vb2ca')" class="nav-btn">VB2CA</button>
+        <button onclick="botAction('trungcap')" class="nav-btn">TRUNG CẤP</button>
+        <button onclick="botAction('thoigian')" class="nav-btn">THỜI GIAN</button>
+        <button onclick="botAction('theluc')" class="nav-btn">THỂ LỰC</button>
     </div>
 
-    <footer class="p-4 bg-gray-50 border-t flex items-center gap-2">
-        <input type="text" id="userInput" placeholder="Nhập nội dung cần tra cứu..." class="flex-grow p-3 rounded-2xl border border-gray-300 text-sm focus:outline-none">
-        <button onclick="handleManualSend()" class="bg-red-600 text-white p-3 rounded-2xl shadow-lg active:scale-90 transition">
-            <i class="fas fa-paper-plane"></i>
-        </button>
+    <footer class="p-4 bg-white border-t flex items-center gap-2">
+        <input type="text" id="userInput" placeholder="Nhập nội dung cần tra cứu..." class="flex-grow p-3 rounded-xl border border-gray-200 text-sm focus:outline-none bg-gray-50">
+        <button onclick="handleSend()" class="bg-red-600 text-white p-3 rounded-xl shadow-lg"><i class="fas fa-paper-plane"></i></button>
     </footer>
 
+    <div id="overlay">
+        <div class="header-red p-4 text-white flex justify-between items-center sticky top-0">
+            <span class="font-bold uppercase text-sm">Dữ liệu gốc PX01</span>
+            <button onclick="toggleOverlay()" class="text-xl">&times;</button>
+        </div>
+        <div class="flex border-b sticky top-14 bg-white">
+            <button class="flex-1 tab-btn active" onclick="switchTab('contact')">LIÊN HỆ</button>
+            <button class="flex-1 tab-btn" onclick="switchTab('health')">SỨC KHỎE</button>
+            <button class="flex-1 tab-btn" onclick="switchTab('info')">TUYỂN SINH 2026</button>
+        </div>
+        <div id="tabContent" class="p-4 text-sm leading-relaxed text-gray-700">
+            </div>
+    </div>
+
     <script>
-        const FLOW_DATA = {
-            "đại học": {
-                text: "<b>Đại học chính quy tuyển mới:</b><br>• Đối tượng: Chiến sĩ nghĩa vụ tại ngũ, học sinh tốt nghiệp THPT.<br>• Phương thức: PT1 tuyển thẳng; PT2 chứng chỉ ngoại ngữ; PT3 điểm thi THPT + bài thi Bộ Công an.<br>• Tổng chỉ tiêu: 1.870.",
-                suggests: ["Chỉ tiêu từng trường?", "Điều kiện sơ tuyển?"]
+        const DATA = {
+            daihoc: {
+                txt: "<b>Đại học chính quy tuyển mới:</b><br>• Đối tượng: Chiến sĩ nghĩa vụ, học sinh THPT, công dân thường trú.<br>• Tổng chỉ tiêu: 1.870.<br>Bạn có muốn tìm hiểu về <b>Cách thức xét tuyển</b> không?",
+                btn: ["Xét tuyển như thế nào?", "Chỉ tiêu từng trường?"]
             },
-            "vb2ca": {
-                text: "<b>Đại học VB2 (Dành cho người đã có bằng Đại học):</b><br>• Đối tượng: Công dân Việt Nam tốt nghiệp đại học ngoài ngành.<br>• Chỉ tiêu: 330 (T01: 130, T02: 100, T04: 100).<br>• Thời gian thi: Dự kiến 150 phút, ngày 15/6/2026.",
-                suggests: ["Danh mục ngành đào tạo?", "Lệ phí dự tuyển?"]
+            vb2ca: {
+                txt: "<b>Điều kiện VB2CA:</b><br>• Đối tượng: Công dân đã tốt nghiệp đại học ngoài ngành.<br>• Tổng chỉ tiêu: 330.<br>• Ngày thi: 15/6/2026.<br>Bạn muốn xem <b>Ngành đào tạo</b> hay <b>Lệ phí</b>?",
+                btn: ["Ngành đào tạo?", "Lệ phí dự tuyển?"]
             },
-            "trung cấp": {
-                text: "<b>Hệ Trung cấp CAND:</b><br>• T08 (An ninh): 80 chỉ tiêu.<br>• T09 (Cảnh sát I): 100 chỉ tiêu.<br>• T10 (Cảnh sát II): 100 chỉ tiêu.",
-                suggests: ["Tổ hợp xét tuyển trung cấp?"]
-            },
-            "thời gian": {
-                text: "<b>Lịch trình dự kiến 2026:</b><br>• Tháng 3-4: Đăng ký sơ tuyển tại Công an xã/huyện.<br>• Tháng 6: Thi bài thi đánh giá của Bộ Công an.<br>• Tháng 7-8: Xét tuyển và công bố kết quả.",
-                suggests: ["Hồ sơ gồm những gì?", "Liên hệ cán bộ hỗ trợ?"]
-            },
-            "thể lực": {
-                text: "<b>Tiêu chuẩn sức khỏe & thể lực:</b><br>• Chiều cao: Nam ≥ 1m64, Nữ ≥ 1m58.<br>• BMI: 18.5 đến dưới 30.<br>• Mắt: Không quá 3 diop, không loạn thị.",
-                suggests: ["Ưu tiên người dân tộc?", "Sơ tuyển tại đâu?"]
-            },
-            // DỮ LIỆU CÂU HỎI PHỤ (BẤM NÚT GỢI Ý)
-            "chỉ tiêu từng trường?": { text: "Chi tiết chỉ tiêu Phụ lục 01:<br>- T01: 500 (250 Nghiệp vụ AN, 150 AN mạng, 100 Y khoa).<br>- T02: 500.<br>- T06: 200.<br>- T07: 300.", suggests: ["Mã bài thi CA1, CA2?"] },
-            "hồ sơ gồm những gì?": { text: "Hồ sơ sơ tuyển bao gồm: (1) Phiếu đăng ký, (2) Khai sinh, (3) CCCD, (4) Học bạ THPT, (5) Giấy xác nhận Đoàn/Đảng.", suggests: ["Địa điểm nộp hồ sơ?"] },
-            "liên hệ cán bộ hỗ trợ?": { text: "Mọi thắc mắc đồng chí liên hệ <b>Đại úy Phạm Đình Nga</b> (PX01). SĐT: <b>0905.771.287</b>.", suggests: ["Quay lại menu chính"] }
+            trungcap: {
+                txt: "<b>Hệ Trung cấp CAND:</b><br>• T08: 80 chỉ tiêu (Toàn quốc).<br>• T09: 100 (Phía Bắc); T10: 100 (Phía Nam).<br>Đồng chí có muốn biết <b>Tổ hợp xét tuyển</b> không?",
+                btn: ["Tổ hợp trung cấp?", "Đối tượng tuyển thẳng?"]
+            }
         };
 
-        function askData(key) {
-            const query = key.toLowerCase();
-            renderMessage(key, 'user');
-            
+        const TAB_INFO = {
+            contact: `<div class="text-center py-4"><p class="text-xs font-bold text-gray-500 uppercase">Cán bộ chủ trì PX01</p><h2 class="text-lg font-bold text-red-700">Đại úy LÊ HOÀNG TRUNG</h2><p class="text-red-600 font-bold">0977.556.858 - 0823.373.373</p></div>`,
+            health: `<h3 class="font-bold text-red-700 border-b pb-1 mb-2">TIÊU CHUẨN SỨC KHỎE (TT 62/2023)</h3><ul class="list-disc pl-4 space-y-2"><li><b>Chiều cao:</b> Nam ≥ 1m64, Nữ ≥ 1m58.</li><li><b>Thị lực:</b> Cận không quá 3 diop; không loạn thị.</li><li><b>BMI:</b> Từ 18.5 đến dưới 30.</li></ul>`,
+            info: `<h3 class="font-bold text-red-700 border-b pb-1 mb-2">CHỈ TIÊU ĐẠI HỌC 2026</h3><p>T01 (Học viện ANND): 500 chỉ tiêu.<br>T02 (Học viện CSND): 400 chỉ tiêu.<br>T06 (Đại học PCCC): 200 chỉ tiêu.</p>`
+        };
+
+        function botAction(key) {
+            renderMsg(key.toUpperCase(), 'user');
             setTimeout(() => {
-                const data = FLOW_DATA[query];
-                if (data) {
-                    let html = `<div>${data.text}</div>`;
-                    if (data.suggests) {
-                        html += `<div class="mt-2">`;
-                        data.suggests.forEach(s => {
-                            html += `<button onclick="askData('${s}')" class="suggest-btn">${s}</button>`;
-                        });
-                        html += `</div>`;
-                    }
-                    renderMessage(html, 'bot');
+                const item = DATA[key] || {txt: "Đang cập nhật...", btn: []};
+                let html = `<div>${item.txt}</div><div class="flex flex-wrap gap-2">`;
+                item.btn.forEach(b => html += `<button onclick="botActionRaw('${b}')" class="suggest-btn">${b}</button>`);
+                html += `</div>`;
+                renderMsg(html, 'bot');
+            }, 400);
+        }
+
+        function botActionRaw(text) {
+            renderMsg(text, 'user');
+            setTimeout(() => {
+                if(text.includes("Xét tuyển")) {
+                    renderMsg("<b>Phương thức xét tuyển:</b><br>PT1: Tuyển thẳng.<br>PT2: Chứng chỉ ngoại ngữ + Điểm thi BCA.<br>PT3: Điểm THPT + Điểm thi BCA.", 'bot');
                 } else {
-                    renderMessage("Tôi chưa có dữ liệu chi tiết về mục này. Đồng chí vui lòng gọi 0905.771.287 để được hỗ trợ.", 'bot');
+                    renderMsg("Thông tin chi tiết đang được cán bộ PX01 cập nhật. Đồng chí vui lòng xem trong mục <b>Dữ liệu gốc</b>.", 'bot');
                 }
             }, 400);
         }
 
-        function handleManualSend() {
-            const input = document.getElementById('userInput');
-            const val = input.value.trim();
-            if(!val) return;
-            askData(val);
-            input.value = "";
+        function handleSend() {
+            const inp = document.getElementById('userInput');
+            if(!inp.value.trim()) return;
+            botActionRaw(inp.value);
+            inp.value = "";
         }
 
-        function renderMessage(content, type) {
-            const history = document.getElementById('history');
+        function renderMsg(html, type) {
             const div = document.createElement('div');
             div.className = `flex ${type === 'user' ? 'justify-end' : 'justify-start'}`;
-            div.innerHTML = `<div class="${type === 'user' ? 'user-msg' : 'bot-msg'} p-3 max-w-[95%] text-sm shadow-sm">${content}</div>`;
-            history.appendChild(div);
-            document.getElementById('chatBox').scrollTop = document.getElementById('chatBox').scrollHeight;
+            div.innerHTML = `<div class="${type==='user'?'user-msg':'bot-msg'} p-3 max-w-[85%] text-sm border shadow-sm">${html}</div>`;
+            document.getElementById('history').appendChild(div);
+            const box = document.getElementById('chatBox');
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function toggleOverlay() { 
+            const o = document.getElementById('overlay');
+            o.style.display = o.style.display === 'block' ? 'none' : 'block';
+            if(o.style.display === 'block') switchTab('contact');
+        }
+
+        function switchTab(t) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('tabContent').innerHTML = TAB_INFO[t];
         }
     </script>
 </body>
