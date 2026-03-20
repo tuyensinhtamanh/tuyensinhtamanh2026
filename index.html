@@ -3,140 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trợ lý Tuyển sinh CAND 2026 - CAX Tam Anh</title>
+    <title>Trợ lý Tuyển sinh CAND 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { background-color: #f1f5f9; font-family: 'Segoe UI', Tahoma, sans-serif; overflow: hidden; }
-        .header-gradient { background: linear-gradient(180deg, #b20a0a 0%, #e61919 100%); }
-        .chat-container { background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 20px 20px; height: calc(100vh - 280px); }
+        .header-red { background: linear-gradient(180deg, #b20a0a 0%, #e61919 100%); }
+        .chat-area { height: calc(100vh - 280px); background-color: #f8fafc; }
+        .bot-msg { background: white; border: 1px solid #e2e8f0; border-radius: 18px 18px 18px 2px; align-self: flex-start; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         .user-msg { background: #e61919; color: white; border-radius: 18px 18px 2px 18px; align-self: flex-end; }
-        .bot-msg { background: white; border: 1px solid #e2e8f0; border-radius: 18px 18px 18px 2px; align-self: flex-start; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .suggest-btn { border: 1px solid #e61919; color: #e61919; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 600; background: white; margin-top: 8px; margin-right: 6px; transition: all 0.2s; display: inline-block; }
+        .suggest-btn:active { background: #fff5f5; transform: scale(0.95); }
+        .nav-btn { whitespace: nowrap; padding: 8px 20px; background-color: #fff5f5; border: 1px solid #fed7d7; color: #c53030; font-weight: bold; font-size: 11px; border-radius: 9999px; transition: 0.2s; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        .table-data { width: 100%; font-size: 10px; border-collapse: collapse; margin-top: 8px; background: white; }
-        .table-data th, .table-data td { border: 1px solid #dee2e6; padding: 6px 4px; text-align: center; }
-        .table-data th { background-color: #fff5f5; color: #b20a0a; font-weight: bold; }
-        .quick-btn { whitespace: nowrap; padding: 8px 20px; background-color: #fff5f5; border: 1px solid #fed7d7; color: #c53030; font-weight: bold; font-size: 11px; border-radius: 9999px; transition: all 0.2s; }
-        .quick-btn:active { background-color: #feb2b2; transform: scale(0.95); }
     </style>
 </head>
 <body class="max-w-md mx-auto shadow-2xl min-h-screen flex flex-col bg-white relative">
 
-    <header class="header-gradient text-white p-5 text-center relative shadow-md">
-        <p class="text-[10px] font-bold tracking-[0.2em] opacity-80 uppercase">Hệ thống tra cứu</p>
+    <header class="header-red text-white p-5 text-center shadow-lg">
+        <p class="text-[10px] font-bold tracking-widest opacity-80 uppercase">Trợ lý ảo</p>
         <h1 class="text-xl font-bold mt-1 uppercase">Tuyển sinh CAND 2026</h1>
-        <p class="text-xs font-semibold mt-1 text-yellow-300">CÔNG AN XÃ TAM ANH - TỈNH QUẢNG NAM</p>
+        <p class="text-[11px] font-semibold text-yellow-300">CÔNG AN TỈNH QUẢNG TRỊ</p>
     </header>
 
-    <main class="chat-container flex-grow p-4 overflow-y-auto flex flex-col gap-4" id="chatBox">
+    <main id="chatBox" class="chat-area p-4 overflow-y-auto flex flex-col gap-4">
         <div class="bot-msg p-4 max-w-[95%]">
-            <p class="font-bold text-red-700 mb-2 text-sm uppercase">● Thông báo từ PX01</p>
-            <p class="text-gray-700 text-sm leading-relaxed">Chào đồng chí! Tôi đã cập nhật dữ liệu từ <b>6 Phụ lục tuyển sinh 2026</b>. Đồng chí vui lòng chọn danh mục bên dưới để xem chi tiết.</p>
+            <p class="text-sm text-gray-800 leading-relaxed">
+                Chào đồng chí! Tôi là trợ lý hỗ trợ tra cứu nhanh về: <b>đối tượng, điều kiện, thời gian, hồ sơ, lệ phí, VB2CA, trung cấp, sức khỏe và thể lực.</b>
+            </p>
         </div>
         <div id="history" class="flex flex-col gap-4"></div>
     </main>
 
     <div class="bg-white px-2 py-3 border-t">
         <div class="flex overflow-x-auto space-x-2 no-scrollbar px-2">
-            <button onclick="quickView('đại học')" class="quick-btn uppercase">ĐẠI HỌC</button>
-            <button onclick="quickView('vb2ca')" class="quick-btn uppercase">VB2CA</button>
-            <button onclick="quickView('trung cấp')" class="quick-btn uppercase">TRUNG CẤP</button>
-            <button onclick="quickView('sức khỏe')" class="quick-btn uppercase">SỨC KHỎE</button>
-            <button onclick="quickView('tổ hợp')" class="quick-btn uppercase">TỔ HỢP / MÃ BÀI</button>
+            <button onclick="askData('Đại học')" class="nav-btn uppercase">Đại học</button>
+            <button onclick="askData('VB2CA')" class="nav-btn uppercase">VB2CA</button>
+            <button onclick="askData('Trung cấp')" class="nav-btn uppercase">Trung cấp</button>
+            <button onclick="askData('Thời gian')" class="nav-btn uppercase">Thời gian</button>
+            <button onclick="askData('Thể lực')" class="nav-btn uppercase">Thể lực</button>
         </div>
     </div>
 
-    <footer class="p-4 bg-gray-50 flex items-center gap-2 border-t">
-        <input type="text" id="userInput" placeholder="Hỏi bất kỳ điều gì..." class="flex-grow p-3 rounded-2xl border border-gray-300 text-sm focus:outline-none focus:border-red-600 bg-white shadow-sm">
-        <button onclick="handleSend()" class="bg-red-600 text-white p-3 rounded-2xl shadow-lg active:scale-90 transition"><i class="fas fa-paper-plane"></i></button>
+    <footer class="p-4 bg-gray-50 border-t flex items-center gap-2">
+        <input type="text" id="userInput" placeholder="Nhập nội dung cần tra cứu..." class="flex-grow p-3 rounded-2xl border border-gray-300 text-sm focus:outline-none">
+        <button onclick="handleManualSend()" class="bg-red-600 text-white p-3 rounded-2xl shadow-lg active:scale-90 transition">
+            <i class="fas fa-paper-plane"></i>
+        </button>
     </footer>
 
     <script>
-        const DATABASE = {
-            "đại học": `
-                <p class="font-bold text-red-700 text-xs uppercase">● Chỉ tiêu Đại học Chính quy (Phụ lục 01)</p>
-                <table class="table-data">
-                    <thead><tr><th>Trường</th><th>Ngành</th><th>Nam</th><th>Nữ</th></tr></thead>
-                    <tbody>
-                        <tr><td><b>T01</b></td><td>An ninh</td><td>214</td><td>24</td></tr>
-                        <tr><td><b>T01</b></td><td>An ninh mạng</td><td>133</td><td>14</td></tr>
-                        <tr><td><b>T02</b></td><td>Cảnh sát</td><td>257</td><td>28</td></tr>
-                        <tr><td><b>T06</b></td><td>PCCC</td><td>86</td><td>9</td></tr>
-                        <tr><td><b>T07</b></td><td>Kỹ thuật</td><td>86</td><td>9</td></tr>
-                    </tbody>
-                </table>
-                <p class="text-[10px] text-gray-500 mt-2 italic">* Chỉ tiêu tính theo Phương thức 3 (Xét điểm thi).</p>`,
-            
-            "vb2ca": `
-                <p class="font-bold text-red-700 text-xs uppercase">● Tuyển mới Văn bằng 2 (Phụ lục 03)</p>
-                <p class="text-sm mt-1"><b>- Học viện ANND (T01):</b> 130 chỉ tiêu<br><b>- Học viện CSND (T02):</b> 100 chỉ tiêu<br><b>- ĐH ANND (T04):</b> 100 chỉ tiêu</p>
-                <div class="mt-2 p-2 bg-blue-50 border border-blue-100 rounded text-[11px]">
-                    Đối tượng: Công dân đã tốt nghiệp Đại học ngành ngoài chuyên môn kỹ thuật.
-                </div>`,
-            
-            "trung cấp": `
-                <p class="font-bold text-red-700 text-xs uppercase">● Hệ Trung cấp CAND (Phụ lục 05)</p>
-                <table class="table-data">
-                    <thead><tr><th>Trường</th><th>Mã</th><th>Chỉ tiêu</th><th>Vùng</th></tr></thead>
-                    <tbody>
-                        <tr><td>CSND I</td><td>T09</td><td>100</td><td>Bắc</td></tr>
-                        <tr><td>CSND II</td><td>T10</td><td>100</td><td>Nam</td></tr>
-                        <tr><td>ANND I</td><td>T08</td><td>80</td><td>Toàn quốc</td></tr>
-                    </tbody>
-                </table>
-                <p class="text-[10px] text-gray-500 mt-1 italic">Tổ hợp: A00, A01, C03, D01, X02, X03...</p>`,
-            
-            "sức khỏe": `
-                <p class="font-bold text-red-700 text-xs uppercase">● Tiêu chuẩn Sức khỏe (TT 62/2023)</p>
-                <div class="text-sm mt-1 space-y-1">
-                    <p><b>- Chiều cao:</b> Nam 1m64-1m95; Nữ 1m58-1m80.</p>
-                    <p><b>- BMI:</b> Từ 18.5 đến dưới 30.</p>
-                    <p><b>- Mắt:</b> Cận/Viễn không quá 3 diop; kiểm tra sắc giác.</p>
-                    <p><b>- Ưu tiên (DTTS):</b> Nam ≥ 1m62, Nữ ≥ 1m56.</p>
-                </div>`,
-            
-            "tổ hợp": `
-                <p class="font-bold text-red-700 text-xs uppercase">● Tổ hợp & Mã bài thi (Phụ lục 02)</p>
-                <div class="text-sm mt-1">
-                    <p><b>CA1:</b> Toán + Trắc nghiệm KHTN</p>
-                    <p><b>CA2:</b> Toán + Trắc nghiệm KHXH</p>
-                    <p class="mt-2 font-semibold text-blue-700">Tổ hợp xét tuyển THPT:</p>
-                    <p>A00, A01, B00, C03, D01, D04, X02...</p>
-                </div>`
+        const FLOW_DATA = {
+            "đại học": {
+                text: "<b>Đại học chính quy tuyển mới:</b><br>• Đối tượng: Chiến sĩ nghĩa vụ tại ngũ, học sinh tốt nghiệp THPT.<br>• Phương thức: PT1 tuyển thẳng; PT2 chứng chỉ ngoại ngữ; PT3 điểm thi THPT + bài thi Bộ Công an.<br>• Tổng chỉ tiêu: 1.870.",
+                suggests: ["Chỉ tiêu từng trường?", "Điều kiện sơ tuyển?"]
+            },
+            "vb2ca": {
+                text: "<b>Đại học VB2 (Dành cho người đã có bằng Đại học):</b><br>• Đối tượng: Công dân Việt Nam tốt nghiệp đại học ngoài ngành.<br>• Chỉ tiêu: 330 (T01: 130, T02: 100, T04: 100).<br>• Thời gian thi: Dự kiến 150 phút, ngày 15/6/2026.",
+                suggests: ["Danh mục ngành đào tạo?", "Lệ phí dự tuyển?"]
+            },
+            "trung cấp": {
+                text: "<b>Hệ Trung cấp CAND:</b><br>• T08 (An ninh): 80 chỉ tiêu.<br>• T09 (Cảnh sát I): 100 chỉ tiêu.<br>• T10 (Cảnh sát II): 100 chỉ tiêu.",
+                suggests: ["Tổ hợp xét tuyển trung cấp?"]
+            },
+            "thời gian": {
+                text: "<b>Lịch trình dự kiến 2026:</b><br>• Tháng 3-4: Đăng ký sơ tuyển tại Công an xã/huyện.<br>• Tháng 6: Thi bài thi đánh giá của Bộ Công an.<br>• Tháng 7-8: Xét tuyển và công bố kết quả.",
+                suggests: ["Hồ sơ gồm những gì?", "Liên hệ cán bộ hỗ trợ?"]
+            },
+            "thể lực": {
+                text: "<b>Tiêu chuẩn sức khỏe & thể lực:</b><br>• Chiều cao: Nam ≥ 1m64, Nữ ≥ 1m58.<br>• BMI: 18.5 đến dưới 30.<br>• Mắt: Không quá 3 diop, không loạn thị.",
+                suggests: ["Ưu tiên người dân tộc?", "Sơ tuyển tại đâu?"]
+            },
+            // DỮ LIỆU CÂU HỎI PHỤ (BẤM NÚT GỢI Ý)
+            "chỉ tiêu từng trường?": { text: "Chi tiết chỉ tiêu Phụ lục 01:<br>- T01: 500 (250 Nghiệp vụ AN, 150 AN mạng, 100 Y khoa).<br>- T02: 500.<br>- T06: 200.<br>- T07: 300.", suggests: ["Mã bài thi CA1, CA2?"] },
+            "hồ sơ gồm những gì?": { text: "Hồ sơ sơ tuyển bao gồm: (1) Phiếu đăng ký, (2) Khai sinh, (3) CCCD, (4) Học bạ THPT, (5) Giấy xác nhận Đoàn/Đảng.", suggests: ["Địa điểm nộp hồ sơ?"] },
+            "liên hệ cán bộ hỗ trợ?": { text: "Mọi thắc mắc đồng chí liên hệ <b>Đại úy Phạm Đình Nga</b> (PX01). SĐT: <b>0905.771.287</b>.", suggests: ["Quay lại menu chính"] }
         };
 
-        function quickView(key) {
-            renderMessage(key.toUpperCase(), 'user');
+        function askData(key) {
+            const query = key.toLowerCase();
+            renderMessage(key, 'user');
+            
             setTimeout(() => {
-                const content = DATABASE[key] || "Đang cập nhật dữ liệu...";
-                renderMessage(content, 'bot');
-            }, 300);
+                const data = FLOW_DATA[query];
+                if (data) {
+                    let html = `<div>${data.text}</div>`;
+                    if (data.suggests) {
+                        html += `<div class="mt-2">`;
+                        data.suggests.forEach(s => {
+                            html += `<button onclick="askData('${s}')" class="suggest-btn">${s}</button>`;
+                        });
+                        html += `</div>`;
+                    }
+                    renderMessage(html, 'bot');
+                } else {
+                    renderMessage("Tôi chưa có dữ liệu chi tiết về mục này. Đồng chí vui lòng gọi 0905.771.287 để được hỗ trợ.", 'bot');
+                }
+            }, 400);
         }
 
-        function handleSend() {
+        function handleManualSend() {
             const input = document.getElementById('userInput');
-            const val = input.value.trim().toLowerCase();
+            const val = input.value.trim();
             if(!val) return;
-            renderMessage(input.value, 'user');
-            
-            let response = "Đồng chí có thể nhấn nhanh vào thanh điều hướng hoặc liên hệ Đại úy <b>Phạm Đình Nga (0905.771.287)</b> để được hỗ trợ trực tiếp.";
-            for(let k in DATABASE) {
-                if(val.includes(k)) { response = DATABASE[k]; break; }
-            }
-            setTimeout(() => renderMessage(response, 'bot'), 400);
+            askData(val);
             input.value = "";
         }
 
-        function renderMessage(text, type) {
+        function renderMessage(content, type) {
             const history = document.getElementById('history');
             const div = document.createElement('div');
             div.className = `flex ${type === 'user' ? 'justify-end' : 'justify-start'}`;
-            div.innerHTML = `<div class="${type === 'user' ? 'user-msg' : 'bot-msg'} p-3 max-w-[95%] text-sm shadow-sm">${text}</div>`;
+            div.innerHTML = `<div class="${type === 'user' ? 'user-msg' : 'bot-msg'} p-3 max-w-[95%] text-sm shadow-sm">${content}</div>`;
             history.appendChild(div);
             document.getElementById('chatBox').scrollTop = document.getElementById('chatBox').scrollHeight;
         }
-
-        document.getElementById('userInput').addEventListener('keypress', (e) => { if(e.key === 'Enter') handleSend(); });
     </script>
 </body>
 </html>
