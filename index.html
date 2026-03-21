@@ -89,7 +89,64 @@
 
         const TAB_INFO = {
             contact: `<div class="text-center py-4"><p class="text-xs font-bold text-gray-500 uppercase">Cán bộ chủ trì PX01</p><h2 class="text-lg font-bold text-red-700">Đại úy LÊ HOÀNG TRUNG</h2><p class="text-red-600 font-bold">0977.556.858 - 0823.373.373</p></div>`,
-            health: `<h3 class="font-bold text-red-700 border-b pb-1 mb-2">TIÊU CHUẨN SỨC KHỎE (TT 62/2023)</h3><ul class="list-disc pl-4 space-y-2"><li><b>Chiều cao:</b> Nam ≥ 1m64, Nữ ≥ 1m58.</li><li><b>Thị lực:</b> Cận không quá 3 diop; không loạn thị.</li><li><b>BMI:</b> Từ 18.5 đến dưới 30.</li></ul>`,
+            health: `
+            <div class="h-[60vh] overflow-y-auto pr-2 pb-10 space-y-4 no-scrollbar">
+                <div class="border-l-4 border-red-600 bg-red-50 p-3 rounded-r-lg shadow-sm">
+                    <h4 class="font-bold text-red-700 text-xs uppercase mb-1"><i class="fas fa-notes-medical mr-1"></i> Kết luận nhanh</h4>
+                    <p class="text-[11px] leading-relaxed text-gray-800 uppercase font-bold">Đạt Loại 1 hoặc Loại 2</p>
+                    <p class="text-[11px] leading-relaxed text-gray-600">
+                        • KHÔNG ĐẠT nếu: BMI ngoài ngưỡng (18.5-30), mù màu, xăm trổ, ma túy, hoặc có 1 chỉ tiêu điểm 3 trở lên.
+                    </p>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg p-3 bg-white shadow-sm text-[11px]">
+                    <h4 class="font-bold text-blue-800 uppercase mb-2 border-b pb-1">Chiều cao & BMI</h4>
+                    <table class="w-full mb-2">
+                        <tr class="font-bold text-gray-500"><td>Đối tượng</td><td>Nam</td><td>Nữ</td></tr>
+                        <tr class="border-t"><td>Chuẩn chung</td><td class="text-blue-700">1m64-1m95</td><td class="text-red-700">1m58-1m80</td></tr>
+                        <tr class="border-t"><td>Dân tộc thiểu số</td><td>≥ 1m62</td><td>≥ 1m56</td></tr>
+                        <tr class="border-t"><td>Đối tượng UT1</td><td>≥ 1m60</td><td>≥ 1m55</td></tr>
+                    </table>
+                    <p class="bg-blue-50 p-2 rounded italic">BMI yêu cầu: 18.5 ≤ BMI ≤ 30</p>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg p-3 bg-white shadow-sm text-[11px]">
+                    <h4 class="font-bold text-blue-800 uppercase mb-2 border-b pb-1">Mắt & Ngoại hình</h4>
+                    <p>• <b>Thị lực:</b> Mỗi mắt 9-10/10. Cận/Viễn ≤ 3 diop. Loạn < 1 diop.</p>
+                    <p>• <b>Hình xăm:</b> Không có vết trổ/xăm (trừ xăm lông mày/môi ở nữ).</p>
+                    <p>• <b>Bấm lỗ:</b> Nam không có. Nữ không quá 01 lỗ/tai.</p>
+                </div>
+
+                <div class="border border-red-200 rounded-lg p-3 bg-white shadow-sm text-[11px]">
+                    <h4 class="font-bold text-red-700 uppercase mb-2 border-b pb-1 text-center">Lịch khám sức khỏe 2026</h4>
+                    <div class="space-y-2">
+                        <p>• <b>ĐH/Trung cấp:</b> 16/4 - 05/5/2026</p>
+                        <p>• <b>VB2CA:</b> 29/6 - 03/7/2026</p>
+                        <div class="bg-gray-50 p-2 rounded">
+                            <b>Địa điểm:</b><br>
+                            - Bệnh xá 02 (31 Phan Chu Trinh, Đồng Hới)<br>
+                            - Bệnh xá 01 (Đường Điện Biên Phủ, Nam Đông Hà)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border border-yellow-200 rounded-lg p-3 bg-yellow-50 shadow-sm text-[11px]">
+                    <h4 class="font-bold text-yellow-800 uppercase mb-2 border-b border-yellow-200 pb-1 text-center">Ngưỡng đạt thể lực</h4>
+                    <div class="grid grid-cols-2 gap-2 text-[10px]">
+                        <div class="p-1 bg-white rounded"><b>Bật xa:</b> N ≥ 2.2m | Nữ ≥ 1.5m</div>
+                        <div class="p-1 bg-white rounded"><b>Chạy 100m:</b> N ≤ 16s | Nữ ≤ 20s</div>
+                        <div class="p-1 bg-white rounded"><b>Chạy bền:</b> N 1.5km: 7'30 | Nữ 800m: 5'30</div>
+                        <div class="p-1 bg-white rounded"><b>Xà đơn:</b> Nam ≥ 12 lần</div>
+                    </div>
+                    <p class="mt-2 text-[10px] italic">Địa điểm: TT Văn hóa Đồng Hới hoặc Trụ sở phía Nam CA tỉnh.</p>
+                </div>
+
+                <div class="bg-gray-100 p-3 rounded-lg text-[10px]">
+                    <h4 class="font-bold mb-1 uppercase text-gray-700">Các trường hợp có thể chấp nhận (Phụ lục X):</h4>
+                    <p class="italic">Răng viêm tủy ổn định; Lệch vách ngăn mũi; Loét dạ dày lành; Mổ ruột thừa > 4 tuần; Sỏi thận nhỏ; Mổ lấy thai 1-2 lần...</p>
+                </div>
+            </div>
+        `,
             info: `<h3 class="font-bold text-red-700 border-b pb-1 mb-2">CHỈ TIÊU ĐẠI HỌC 2026</h3><p>T01 (Học viện ANND): 500 chỉ tiêu.<br>T02 (Học viện CSND): 400 chỉ tiêu.<br>T06 (Đại học PCCC): 200 chỉ tiêu.</p>`
         };
 
