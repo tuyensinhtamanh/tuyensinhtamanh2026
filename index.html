@@ -37,11 +37,11 @@
     </main>
 
     <div class="bg-white px-2 py-3 border-t flex overflow-x-auto space-x-2 no-scrollbar">
-        <button onclick="botAction('ĐẠI HỌC')" class="nav-btn">ĐẠI HỌC</button>
-        <button onclick="botAction('VB2CA')" class="nav-btn">VB2CA</button>
-        <button onclick="botAction('RTUNG CẤP')" class="nav-btn">TRUNG CẤP</button>
-        <button onclick="botAction('THỜI GIAN')" class="nav-btn">THỜI GIAN</button>
-        <button onclick="botAction('TIÊU CHÍ SỨC KHOẺ')" class="nav-btn">SỨC KHOẺ</button>
+        <button onclick="botAction('daihoc', 'ĐẠI HỌC')" class="nav-btn">ĐẠI HỌC</button>
+        <button onclick="botAction('vb2ca', 'VB2CA')" class="nav-btn">VB2CA</button>
+        <button onclick="botAction('trungcap', 'TRUNG CẤP')" class="nav-btn">TRUNG CẤP</button>
+        <button onclick="botAction('thoigian', 'THỜI GIAN')" class="nav-btn">THỜI GIAN</button>
+        <button onclick="botAction('theluc', 'SỨC KHOẺ')" class="nav-btn">SỨC KHOẺ</button>
     </div>
 
     <footer class="p-4 bg-white border-t flex items-center gap-2">
@@ -85,8 +85,10 @@
             info: `<h3 class="font-bold text-red-700 border-b pb-1 mb-2">CHỈ TIÊU ĐẠI HỌC 2026</h3><p>T01 (Học viện ANND): 500 chỉ tiêu.<br>T02 (Học viện CSND): 400 chỉ tiêu.<br>T06 (Đại học PCCC): 200 chỉ tiêu.</p>`
         };
 
-        function botAction(key) {
-            renderMsg(key.toUpperCase(), 'user');
+      function botAction(key, label) {
+            // In ra chữ tiếng Việt có dấu (label) thay vì biến key
+            renderMsg(label || key.toUpperCase(), 'user'); 
+            
             setTimeout(() => {
                 const item = DATA[key] || {txt: "Đang cập nhật...", btn: []};
                 let html = `<div>${item.txt}</div><div class="flex flex-wrap gap-2">`;
@@ -95,8 +97,7 @@
                 renderMsg(html, 'bot');
             }, 400);
         }
-
-        function botActionRaw(text) {
+               function botActionRaw(text) {
             renderMsg(text, 'user');
             setTimeout(() => {
                 if(text.includes("Xét tuyển")) {
