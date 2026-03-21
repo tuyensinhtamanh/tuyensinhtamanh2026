@@ -76,6 +76,14 @@
             trungcap: {
                 txt: "<b>Hệ Trung cấp CAND:</b><br>• T08: 80 chỉ tiêu (Toàn quốc).<br>• T09: 100 (Phía Bắc); T10: 100 (Phía Nam).<br>Đồng chí có muốn biết <b>Tổ hợp xét tuyển</b> không?",
                 btn: ["Tổ hợp trung cấp?", "Đối tượng tuyển thẳng?"]
+            },
+            thoigian: {
+                txt: "<b>Thời gian đăng ký:</b> Từ ngày ra thông báo đến hết ngày <b>15/4/2026</b>.<br><i class='text-gray-600'>(Đối với thí sinh dự tuyển đào tạo Văn bằng 2 chính quy tuyển mới, thời gian dừng nhận hồ sơ Công an thành phố sẽ thông báo tiếp nhận sau).</i><br><br>Bạn có muốn tìm hiểu về <b>Địa điểm và thủ tục đăng ký thi</b> không?",
+                btn: ["Địa điểm đăng ký?", "Thủ tục đăng ký?"]
+            },
+            theluc: {
+                txt: "<b>Tiêu chuẩn sức khỏe:</b><br>• Nam: Cao từ 1m64 trở lên.<br>• Nữ: Cao từ 1m58 trở lên.<br>• Thị lực: Không quá 3 diop, không loạn thị.<br>Đồng chí có muốn xem chi tiết về <b>Chỉ số BMI</b> không?",
+                btn: ["Chỉ số BMI quy định?", "Bệnh lý cấm tuyển?"]
             }
         };
 
@@ -110,11 +118,37 @@
 
         function handleSend() {
             const inp = document.getElementById('userInput');
-            if(!inp.value.trim()) return;
-            botActionRaw(inp.value);
-            inp.value = "";
+            const text = inp.value.trim();
+            if(!text) return; // Nếu không nhập gì thì không gửi
+
+            const txt = text.toLowerCase(); // Chuyển chữ thường để dễ nhận diện
+            
+            // Quét từ khóa người dùng gõ để tự động gọi đúng dữ liệu
+            if (txt.includes("đại học") || txt.includes("dai hoc")) {
+                botAction('daihoc', text);
+            } else if (txt.includes("vb2") || txt.includes("văn bằng 2")) {
+                botAction('vb2ca', text);
+            } else if (txt.includes("trung cấp") || txt.includes("trung cap")) {
+                botAction('trungcap', text);
+            } else if (txt.includes("thời gian") || txt.includes("thoi gian")) {
+                botAction('thoigian', text);
+            } else if (txt.includes("sức khoẻ") || txt.includes("sức khỏe") || txt.includes("thể lực")) {
+                botAction('theluc', text);
+            } else {
+                // Nếu gõ câu khác không chứa từ khóa chính, đưa vào xử lý phụ
+                botActionRaw(text);
+            }
+            
+            inp.value = ""; // Xóa trắng ô nhập liệu sau khi gửi
         }
 
+        // Lắng nghe sự kiện nhấn phím Enter trên ô nhập liệu
+        document.getElementById('userInput').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                handleSend();
+            }
+        });
         function renderMsg(html, type) {
             const div = document.createElement('div');
             div.className = `flex ${type === 'user' ? 'justify-end' : 'justify-start'}`;
