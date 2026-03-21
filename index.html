@@ -107,12 +107,35 @@
         }
                function botActionRaw(text) {
             renderMsg(text, 'user');
+            
             setTimeout(() => {
-                if(text.includes("Xét tuyển")) {
-                    renderMsg("<b>Phương thức xét tuyển:</b><br>PT1: Tuyển thẳng.<br>PT2: Chứng chỉ ngoại ngữ + Điểm thi BCA.<br>PT3: Điểm THPT + Điểm thi BCA.", 'bot');
-                } else {
-                    renderMsg("Thông tin chi tiết đang được cán bộ PX01 cập nhật. Đồng chí vui lòng xem trong mục <b>Dữ liệu gốc</b>.", 'bot');
+                let response = "Thông tin chi tiết đang được cán bộ PX01 cập nhật. Đồng chí vui lòng xem trong mục <b>Dữ liệu gốc</b>.";
+                const txt = text.toLowerCase();
+
+                if (txt.includes("xét tuyển như thế nào") || txt.includes("cách thức xét tuyển") || txt.includes("xét tuyển")) {
+                    response = "<b>Phương thức xét Đại học:</b><br>• PT1: Tuyển thẳng theo quy chế BGD&ĐT và BCA.<br>• PT2: Xét chứng chỉ ngoại ngữ quốc tế.<br>• PT3: Xét kết quả thi THPT + Điểm bài thi BCA.";
+                } else if (txt.includes("chỉ tiêu từng trường")) {
+                    response = "<b>CHỈ TIÊU CÁC TRƯỜNG CAND (Tổng: 530):</b><br>• <b>T01 - HV An ninh nhân dân:</b> 130 CT (NV An ninh: 100, ATTT: 30)<br>• <b>T02 - HV Cảnh sát nhân dân:</b> 100 CT (Phía Bắc)<br>• <b>T04 - ĐH An ninh nhân dân:</b> 100 CT (Phía Nam)<br>• <b>T05 - ĐH Cảnh sát nhân dân:</b> 100 CT (Phía Nam)<br>• <b>T06 - ĐH PCCC:</b> 50 CT (Toàn quốc)<br>• <b>T07 - HV Kỹ thuật & Công nghệ AN:</b> 50 CT (Toàn quốc)<br><br><i>👉 Bạn có thể xem bảng phân bổ chi tiết Nam/Nữ trong menu <b>Dữ liệu gốc (Góc trên bên phải)</b>.</i>";
+                } else if (txt.includes("ngành đào tạo")) {
+                    response = "<b>Ngành đào tạo VB2CA:</b><br>Tuyển sinh nhóm ngành Nghiệp vụ An ninh, Nghiệp vụ Cảnh sát, Phòng cháy chữa cháy và Cứu nạn cứu hộ, An toàn thông tin.";
+                } else if (txt.includes("lệ phí")) {
+                    response = "<b>Lệ phí dự tuyển:</b><br>Đang cập nhật theo quy định của Bộ Tài chính và BCA năm 2026. Thường bao gồm lệ phí khám sức khỏe và lệ phí làm hồ sơ.";
+                } else if (txt.includes("tổ hợp trung cấp")) {
+                    response = "<b>Tổ hợp xét tuyển Trung cấp:</b><br>Xét tuyển dựa trên kết quả thi tốt nghiệp THPT theo các tổ hợp A00, A01, B00, C00, C03, D01 và điểm bài thi của BCA.";
+                } else if (txt.includes("đối tượng tuyển thẳng")) {
+                    response = "<b>Tuyển thẳng hệ Trung cấp:</b><br>Con đẻ của liệt sĩ CAND, thương binh CAND (tỷ lệ trên 81%), Anh hùng LLVTND... theo quy định hiện hành của Bộ Công an.";
+                } else if (txt.includes("địa điểm đăng ký")) {
+                    response = "<b>Địa điểm đăng ký sơ tuyển:</b><br>Tại Công an cấp huyện/thị xã/thành phố nơi đăng ký thường trú. Đối với công dân tại xã Tam Anh, vui lòng liên hệ trực tiếp trực ban Công an xã để được hướng dẫn cụ thể.";
+                } else if (txt.includes("thủ tục đăng ký")) {
+                    response = "<b>Thủ tục hồ sơ cơ bản:</b><br>1. Đơn tự nguyện phục vụ trong CAND.<br>2. Bản sao CCCD, Khai sinh.<br>3. Học bạ THPT (bản sao).<br>4. Giấy chứng nhận Đoàn viên/Đảng viên.";
+                } else if (txt.includes("bmi") || txt.includes("chỉ số bmi quy định")) {
+                    response = "<b>Chỉ số BMI (Body Mass Index):</b><br>Chỉ số BMI phải đạt từ <b>18.5</b> đến dưới <b>30</b>.<br><i>Công thức: BMI = Cân nặng (kg) / [Chiều cao (m) x Chiều cao (m)].</i>";
+                } else if (txt.includes("bệnh lý") || txt.includes("bệnh lý cấm tuyển")) {
+                    response = "<b>Một số điều kiện sức khỏe cấm tuyển:</b><br>Viêm gan B, C; các bệnh về tim mạch; dị tật bẩm sinh; hình xăm/chữ xăm lộ rõ; sứt môi, hở hàm ếch... (Theo Thông tư 62/2023/TT-BCA).";
                 }
+
+                // Lệnh bắt buộc phải có để in câu trả lời ra màn hình
+                renderMsg(response, 'bot');
             }, 400);
         }
 
@@ -172,3 +195,4 @@
     </script>
 </body>
 </html>
+ 
