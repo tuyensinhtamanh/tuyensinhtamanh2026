@@ -14,25 +14,45 @@
         .user-msg { background: #e61919; color: white; border-radius: 15px 15px 2px 15px; align-self: flex-end; }
         .suggest-btn { border: 1px solid #e61919; color: #e61919; padding: 6px 12px; border-radius: 10px; font-size: 11px; font-weight: 600; background: white; margin-top: 8px; cursor: pointer; }
         .nav-btn { whitespace: nowrap; padding: 8px 15px; background: #fff5f5; border: 1px solid #fed7d7; color: #c53030; font-weight: bold; font-size: 11px; border-radius: 8px; }
-        #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 50; overflow-y: auto; }
+       #overlay { 
+    display: none; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    /* Sử dụng màu trắng trong suốt (15%) */cócó
+    ccó
+    background: rgba(255, 255, 255, 0.85); 
+    /* Kỹ thuật làm mờ hậu cảnh quan trọng nhất */
+    backdrop-filter: blur(15px); 
+    -webkit-backdrop-filter: blur(15px); 
+    z-index: 50; 
+    overflow-y: auto; 
+    /* Thêm hiệu ứng chuyển động khi mở ra cho sinh động */
+    transition: all 0.3s ease-in-out;
+}
         .tab-btn { padding: 10px; font-size: 12px; font-weight: bold; color: #666; border-bottom: 2px solid transparent; }
         .tab-btn.active { color: #b20a0a; border-bottom: 2px solid #b20a0a; }
         /* Phóng to chữ trong toàn bộ phần nội dung Dữ liệu gốc */
-#tabContent {
-    font-size: 15px !important; /* Số càng lớn chữ càng to, 15px-16px là rất dễ đọc */
-    line-height: 1.6;           /* Tăng khoảng cách giữa các dòng để không bị dính chữ */
-}
+        #tabContent {
+            font-size: 16px !important; 
+            line-height: 1.8; /* Giãn dòng rộng hơn để không mỏi mắt */
+            color: #1e293b;   /* Màu xám đậm chuyên nghiệp */
+        }
 
-/* Phóng to chữ ở các tiêu đề mục (đoạn 📌 1, 📌 2...) */
-#tabContent summary {
-    font-size: 16px !important;
-    font-weight: bold;
-}
+        /* Phóng to tiêu đề các mục (📌, ⚕️) */
+        #tabContent summary {
+            font-size: 18px !important;
+            font-weight: 700;
+            padding: 12px;
+        }
 
-/* Phóng to chữ ở các đoạn văn bản chi tiết bên trong */
-#tabContent div, #tabContent p, #tabContent li {
-    font-size: 14px !important;
-}
+        /* Phóng to văn bản chi tiết */
+        #tabContent div, #tabContent p, #tabContent li {
+            font-size: 15px !important;
+            margin-bottom: 8px;
+        }
         .no-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
@@ -89,6 +109,7 @@
     </div>
 
     <script>
+    const QUICK_ANS = { "có": "<b>Phương thức xét tuyển 2026:</b> PT1, PT2 và PT3. Bạn muốn xem <b>Chỉ tiêu</b> không?", "co": "Nội dung như trên..." };
         const DATA = {
             daihoc: {
                 txt: "<b>Đại học chính quy tuyển mới:</b><br>• Đối tượng: Chiến sĩ nghĩa vụ, học sinh THPT, công dân thường trú.<br>• Tổng chỉ tiêu: 1.870.<br>Bạn có muốn tìm hiểu về <b>Cách thức xét tuyển</b> không?",
@@ -464,7 +485,7 @@
             const text = inp.value.trim();
             if(!text) return; // Nếu không nhập gì thì không gửi
 
-            const txt = text.toLowerCase(); // Chuyển chữ thường để dễ nhận diện
+            const txt = text.toLowerCase(); // Chuyển chữ thường để dễ nhận diệnif (txt === "có" || txt === "co") return renderMsg("<b>Phương thức xét tuyển Đại học 2026:</b><br>• PT1: Tuyển thẳng.<br>• PT2: Chứng chỉ ngoại ngữ + Bài thi BCA.<br>• PT3: Điểm thi THPT + Bài thi BCA.<br><br><i>Bạn có muốn xem <b>Chỉ tiêu từng trường</b> không?</i>", 'bot');
             
             // Quét từ khóa người dùng gõ để tự động gọi đúng dữ liệu
             if (txt.includes("đại học") || txt.includes("dai hoc")) {
