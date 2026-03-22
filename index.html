@@ -91,7 +91,7 @@
                 btn: ["Địa điểm đăng ký?", "Thủ tục đăng ký?"]
             },
             theluc: {
-                txt: "<b>Tiêu chuẩn sức khỏe:</b><br>• Nam: Cao từ 1m64 trở lên.<br>• Nữ: Cao từ 1m58 trở lên.<br>• Thị lực: Không quá 3 diop, không loạn thị.<br>Đồng chí có muốn xem chi tiết về <b>Chỉ số BMI</b> không?",
+                txt: "<b>Tiêu chuẩn sức khỏe:</b><br>• Nam: Cao từ 1m64 trở lên.<br>• Nữ: Cao từ 1m58 trở lên.<br>• Thị lực: Không quá 3 diop, không loạn thị.<br>Bạn có muốn xem chi tiết về <b>Chỉ số BMI</b> không?",
                 btn: ["Chỉ số BMI quy định?", "Bệnh lý cấm tuyển?"]
             }
         };
@@ -200,7 +200,110 @@
                 </div>
             </div>
         `,
-            info: `<h3 class="font-bold text-red-700 border-b pb-1 mb-2">CHỈ TIÊU ĐẠI HỌC 2026</h3><p>T01 (Học viện ANND): 500 chỉ tiêu.<br>T02 (Học viện CSND): 400 chỉ tiêu.<br>T06 (Đại học PCCC): 200 chỉ tiêu.</p>`
+            info: `
+<div class="h-[65vh] overflow-y-auto pr-2 pb-10 no-scrollbar space-y-3">
+    <div class="bg-red-700 text-white p-3 rounded-lg text-center mb-4 shadow-md">
+        <h3 class="font-bold uppercase text-sm">Đối tượng & Nguyên tắc xét tuyển 2026</h3>
+    </div>
+
+    <details class="bg-white border border-red-200 rounded-lg shadow-sm" open>
+        <summary class="p-3 font-bold text-red-800 cursor-pointer list-none flex justify-between items-center bg-red-50 rounded-t-lg">
+            📌 1. TỔNG QUAN & PHÂN VÙNG <i class="fas fa-chevron-down text-[10px]"></i>
+        </summary>
+        <div class="p-3 text-[11px] leading-relaxed text-gray-700 border-t border-red-100">
+            • <b>Hệ tuyển sinh:</b> Đại học chính quy, Văn bằng 2 (VB2CA), Trung cấp chính quy.<br>
+            • <b>Phân vùng Phía Nam:</b> Xã Tam Anh (Đà Nẵng) được xác định thuộc phân vùng tuyển sinh Phía Nam.
+        </div>
+    </details>
+
+    <details class="bg-white border border-red-200 rounded-lg shadow-sm">
+        <summary class="p-3 font-bold text-red-800 cursor-pointer list-none flex justify-between items-center bg-red-50">
+            📌 2. ĐẠI HỌC CHÍNH QUY <i class="fas fa-chevron-down text-[10px]"></i>
+        </summary>
+        <div class="p-3 text-[11px] leading-relaxed text-gray-700 border-t border-red-100 space-y-2">
+            <p><b>• Đối tượng:</b> Chiến sĩ nghĩa vụ tại ngũ; Công dân xuất ngũ (trong 12 tháng); Công dân thường trú tại địa phương.</p>
+            <p><b>• Phương thức (PT):</b><br>
+                - PT1: Tuyển thẳng theo quy định Bộ GD&ĐT.<br>
+                - PT2: Chứng chỉ ngoại ngữ quốc tế + Bài thi Bộ Công an.<br>
+                - PT3: Điểm thi THPT + Bài thi Bộ Công an.</p>
+            <p><b>• Điều kiện học lực & Điểm:</b><br>
+                - Học lực THPT: Thường trú/Xuất ngũ đạt loại Khá trở lên.<br>
+                - Điểm môn tổ hợp: Thường trú ≥ 7.0; Xuất ngũ/Dân tộc thiểu số ≥ 6.5.<br>
+                - Ngành Y khoa: Lớp 12 học lực loại Giỏi (Tốt).</p>
+            <p><b>• Bài thi BCA:</b> CA1, CA2, CA3, CA4 (180 phút). Thi ngày 21/06/2026.</p>
+        </div>
+    </details>
+
+    <details class="bg-white border border-red-200 rounded-lg shadow-sm">
+        <summary class="p-3 font-bold text-red-800 cursor-pointer list-none flex justify-between items-center bg-red-50">
+            📌 3. ĐÀO TẠO VĂN BẰNG 2 (VB2CA) <i class="fas fa-chevron-down text-[10px]"></i>
+        </summary>
+        <div class="p-3 text-[11px] leading-relaxed text-gray-700 border-t border-red-100 space-y-2">
+            • <b>Đối tượng:</b> Công dân VN đã tốt nghiệp Đại học chính quy loại Khá trở lên.<br>
+            • <b>Độ tuổi:</b> Không quá 30 tuổi.<br>
+            • <b>Bài thi:</b> Thi trên máy tính (150 phút) ngày 20/09/2026.<br>
+            • <b>Tổng chỉ tiêu:</b> 330 (Toàn quốc & Phía Nam).
+        </div>
+    </details>
+
+    <details class="bg-white border border-red-200 rounded-lg shadow-sm">
+        <summary class="p-3 font-bold text-red-800 cursor-pointer list-none flex justify-between items-center bg-red-50">
+            📌 4. HỆ TRUNG CẤP CAND <i class="fas fa-chevron-down text-[10px]"></i>
+        </summary>
+        <div class="p-3 text-[11px] leading-relaxed text-gray-700 border-t border-red-100 space-y-2">
+            • <b>Đối tượng:</b> CS nghĩa vụ; Công dân xuất ngũ; Thí sinh thi rớt Đại học CAND nhưng đủ tiêu chuẩn.<br>
+            • <b>Chỉ tiêu:</b> T08 (80 CT - Toàn quốc); T10 (100 CT - Phía Nam).<br>
+            • <b>Hồ sơ:</b> Danh sách ĐK, Tờ khai (10.000đ/tờ), CCCD, Ảnh thẻ (14 ảnh 4x6, 6 ảnh 3x4).
+        </div>
+    </details>
+
+ <details class="bg-white border border-red-200 rounded-lg shadow-sm">
+        <summary class="p-3 font-bold text-red-800 cursor-pointer list-none flex justify-between items-center bg-red-50 rounded-b-lg">
+            📌 5. MÃ TỔ HỢP & BÀI THI BCA <i class="fas fa-chevron-down text-[10px]"></i>
+        </summary>
+        <div class="p-3 text-[10px] leading-relaxed text-gray-700 border-t border-red-100 space-y-3">
+            <div>
+                <p class="font-bold text-red-700 mb-1 underline">Mã tổ hợp xét tuyển:</p>
+                <div class="grid grid-cols-2 gap-x-2 gap-y-1">
+                    <span>• A00: Toán, Vật lí, Hóa</span>
+                    <span>• A01: Toán, Vật lí, Anh</span>
+                    <span>• B00: Toán, Hóa, Sinh</span>
+                    <span>• B08: Toán, Sinh, Anh</span>
+                    <span>• C00: Văn, Sử, Địa</span>
+                    <span>• C03: Toán, Văn, Sử</span>
+                    <span>• D01: Toán, Văn, Anh</span>
+                    <span>• D04: Văn, Toán, Trung</span>
+                    <span>• D07: Toán, Hóa, Anh</span>
+                    <span>• D09: Toán, Sử, Anh</span>
+                    <span>• D10: Toán, Địa, Anh</span>
+                    <span>• X02: Toán, Văn, Tin</span>
+                    <span>• X03: Toán, Văn, CN Công nghiệp</span>
+                    <span>• X04: Toán, Văn, CN Nông nghiệp</span>
+                    <span>• X26: Toán, Anh, Tin học</span>
+                    <span>• X27: Toán, Anh, CN Công nghiệp</span>
+                    <span>• X28: Toán, Anh, CN Nông nghiệp</span>
+                </div>
+            </div>
+            
+            <div class="border-t pt-2">
+                <p class="font-bold text-red-700 mb-1 underline">Mã bài thi đánh giá Bộ Công an:</p>
+                <div class="space-y-1 text-[9px]">
+                    <p><b>• CA1:</b> Văn tự luận; Trắc nghiệm Toán, Sử, Anh; Tự chọn Lý.</p>
+                    <p><b>• CA2:</b> Văn tự luận; Trắc nghiệm Toán, Sử, Anh; Tự chọn Hóa.</p>
+                    <p><b>• CA3:</b> Văn tự luận; Trắc nghiệm Toán, Sử, Anh; Tự chọn Sinh.</p>
+                    <p><b>• CA4:</b> Văn tự luận; Trắc nghiệm Toán, Sử, Anh; Tự chọn Địa.</p>
+                </div>
+            </div>
+        </div>
+    </details>
+
+    <div class="bg-yellow-50 p-3 rounded-lg border border-yellow-200 mt-4">
+        <p class="text-[10px] text-yellow-800 italic text-center">
+            *Lưu ý: Các mốc lệ phí và thời gian cụ thể khác đang được cập nhật. Thí sinh vui lòng theo dõi thông báo mới nhất.
+        </p>
+    </div>
+</div>
+`
         };
 
       function botAction(key, label) {
