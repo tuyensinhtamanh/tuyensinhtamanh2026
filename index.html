@@ -102,7 +102,7 @@
         <div class="flex border-b sticky top-14 bg-white">
             <button class="flex-1 tab-btn active" onclick="switchTab('contact')">LIÊN HỆ</button>
             <button class="flex-1 tab-btn" onclick="switchTab('health')">SỨC KHỎE</button>
-            <button class="flex-1 tab-btn" onclick="switchTab('info')">TUYỂN SINH 2026</button>
+            <button class="flex-1 tab-btn" onclick="switchTab('info')">TUYỂN SINH NĂM 2026</button>
         </div>
         <div id="tabContent" class="p-4 text-sm leading-relaxed text-gray-700">
             </div>
@@ -169,14 +169,14 @@
             </a>
         </div>
         
-        <p class="text-[10px] text-center text-gray-400 italic mt-4">Lưu ý: Thí sinh nên liên hệ trong giờ hành chính để được hỗ trợ tốt nhất.</p>
+        <p class="text-[10px] text-center text-Red-400 italic mt-4">Lưu ý: Thí sinh nên liên hệ trong giờ hành chính để được hỗ trợ tốt nhất.</p>
     </div>
 `,
 
            health: `
 <div class="h-[65vh] overflow-y-auto pr-2 pb-10 no-scrollbar space-y-4 text-[11px] leading-relaxed text-gray-700">
     <div class="bg-red-700 text-white p-3 rounded-lg text-center mb-4 shadow-md">
-        <h3 class="font-bold uppercase text-sm">SỨC KHỎE - THỂ LỰC TUYỂN SINH 2026</h3>
+        <h3 class="font-bold uppercase text-sm">SỨC KHỎE - THỂ LỰC TUYỂN SINH CAND NĂM 2026</h3>
         <p class="text-[10px]">TIÊU CHUẨN LÂM SÀNG & CẬN LÂM SÀNG</p>
     </div>
 
@@ -458,16 +458,31 @@
                 } else if (txt.includes("đối tượng tuyển thẳng")) {
                     response = "<b>Tuyển thẳng hệ Trung cấp:</b><br>Con đẻ của liệt sĩ CAND, thương binh CAND (tỷ lệ trên 81%), Anh hùng LLVTND... theo quy định hiện hành của Bộ Công an.";
                 } else if (txt.includes("địa điểm đăng ký")) {
-                    response = "<b>Địa điểm đăng ký sơ tuyển:</b><br>Công dân có nguyện vọng dự tuyển vào các trường CAND năm 2026 trực tiếp đến trụ sở Công an xã Tam Anh (thôn Bình An, xã Tam Anh, thành phố Đà Nẵng) để đăng ký. Mọi khó khăn, vướng mắc, đề nghị công dân liên hệ trực tiếp số điện thoại trực ban: 02353.551.113 hoặc trực tiếp qua đồng chí Đại úy Phạm Thị Trang, cán bộ Công an xã Tam Anh (SĐT: 0329.529.059) để được hướng dẫn.";
+                   response = `<div class='text-justify leading-relaxed'>
+    <b class='text-red-700 uppercase'><i class='fas fa-map-marker-alt mr-1'></i> Địa điểm đăng ký sơ tuyển:</b><br>
+    <p class='mt-2 ml-4'>
+        Công dân có nguyện vọng dự tuyển vào các trường CAND năm 2026 trực tiếp đến trụ sở <b>Công an xã Tam Anh</b> (thôn Bình An, xã Tam Anh, thành phố Đà Nẵng) để đăng ký.
+    </p>
+    <div class='mt-4 p-3 bg-blue-50 border-l-4 border-blue-400 rounded'>
+        <i class='fas fa-info-circle text-blue-600 mr-1'></i> <b>Hỗ trợ & Hướng dẫn:</b><br>
+        <p class='ml-4 mt-1'>
+            Mọi khó khăn, vướng mắc, đề nghị công dân liên hệ trực tiếp:
+        </p>
+        <ul class='ml-6 mt-2 space-y-1'>
+            <li>• Trực ban: <a href='tel:02353551113' class='text-blue-700 font-bold underline'>02353.551.113</a></li>
+            <li>• Đ/c Đại úy Phạm Thị Trang: <a href='tel:0329529059' class='text-blue-700 font-bold underline'>0329.529.059</a></li>
+        </ul>
+    </div>
+</div>`;
               } else if (txt.includes("thủ tục đăng ký")) {
     			response = "<b>Hồ sơ đăng ký sơ tuyển 2026:</b><br>" +
-               "• Phiếu đăng ký dự sơ tuyển vào các trường CAND năm 2026;<br>" +
-               "• Bản sao chứng thực Giấy khai sinh, Căn cước công dân;<br>" +
-               "• Bằng tốt nghiệp THPT và học bạ (đối với thí sinh đã tốt nghiệp);<br>" +
-               "• Học bạ lớp 10, 11 và bảng điểm HK I lớp 12 (đối với thí sinh đang học THPT);<br>" +
-               "• Giấy xác nhận Đoàn viên/Đảng viên;<br>" +
-               "• 14 ảnh thẻ 4x6; 06 ảnh thẻ 3x4;<br>" +
-               "• Quyết định xuất ngũ (đối với công dân hoàn thành NV CAND).<br><br>" +
+               "1. Phiếu đăng ký dự sơ tuyển vào các trường CAND năm 2026;<br>" +
+               "2. Bản sao chứng thực Giấy khai sinh, Căn cước công dân;<br>" +
+               "3. Bằng tốt nghiệp THPT và học bạ (đối với thí sinh đã tốt nghiệp);<br>" +
+               "4. Học bạ lớp 10, 11 và bảng điểm HK I lớp 12 (đối với thí sinh đang học THPT);<br>" +
+               "5. Giấy xác nhận Đoàn viên/Đảng viên;<br>" +
+               "6. 14 ảnh thẻ 4x6; 06 ảnh thẻ 3x4;<br>" +
+               "7. Quyết định xuất ngũ (đối với công dân hoàn thành NV CAND).<br><br>" +
                "👉 <b>Ghi chú:</b> Mẫu phiếu đăng ký dự sơ tuyển năm 2026, công dân đến trực tiếp <b>Công an xã Tam Anh</b> để thực hiện.";
                 } else if (txt.includes("bmi") || txt.includes("chỉ số bmi quy định")) {
                     response = "<b>Chỉ số BMI (Body Mass Index):</b><br>Chỉ số BMI phải đạt từ <b>18.5</b> đến dưới <b>30</b>.<br><i>Công thức: BMI = Cân nặng (kg) / [Chiều cao (m) x Chiều cao (m)].</i>";
