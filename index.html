@@ -533,14 +533,30 @@
                 handleSend();
             }
         });
-        function renderMsg(html, type) {
-            const div = document.createElement('div');
-            div.className = `flex ${type === 'user' ? 'justify-end' : 'justify-start'}`;
-            div.innerHTML = `<div class="${type==='user'?'user-msg':'bot-msg'} p-3 max-w-[85%] text-sm border shadow-sm">${html}</div>`;
-            document.getElementById('history').appendChild(div);
-            const box = document.getElementById('chatBox');
-            box.scrollTop = box.scrollHeight;
-        }
+       function renderMsg(text, type) {
+    const chatBox = document.getElementById('chatBox');
+    const msgDiv = document.createElement('div');
+    
+    // Căn lề: Bot bên trái (flex-row), User bên phải (flex-row-reverse)
+    msgDiv.className = `flex gap-2 items-start mb-4 ${type === 'user' ? 'flex-row-reverse' : 'flex-row'}`;
+    
+    // Link ảnh Avatar của bạn từ Github
+    const botImg = "https://raw.githubusercontent.com/tuyensinhtamanh/tuyensinhtamanh2026/main/avatar.png";
+    const userImg = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+
+    msgDiv.innerHTML = `
+        <div class="shrink-0 w-8 h-8 rounded-full border border-red-100 shadow-sm overflow-hidden bg-white">
+            <img src="${type === 'user' ? userImg : botImg}" class="w-full h-full object-cover">
+        </div>
+        <div class="${type === 'user' ? 'bg-red-600 text-white rounded-l-lg rounded-br-lg' : 'bg-white text-gray-800 rounded-r-lg rounded-bl-lg'} p-3 text-sm shadow-sm max-w-[80%] border ${type === 'user' ? 'border-red-700' : 'border-gray-100'}">
+            ${text}
+        </div>
+    `;
+    
+    chatBox.appendChild(msgDiv);
+    // Cuộn mượt xuống tin nhắn mới
+    chatBox.scrollTo({top: chatBox.scrollHeight, behavior: 'smooth'});
+}
 
         function toggleOverlay() { 
             const o = document.getElementById('overlay');
@@ -556,4 +572,5 @@
     </script>
 </body>
 </html>
+ 
  
