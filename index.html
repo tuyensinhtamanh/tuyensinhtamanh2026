@@ -87,7 +87,7 @@
                 btn: ["Tổ hợp trung cấp?", "Đối tượng tuyển thẳng?"]
             },
             thoigian: {
-                txt: "<b>Thời gian đăng ký:</b> Từ ngày ra thông báo đến hết ngày <b>02/4/2026</b>.<br><i class='text-gray-600'>(Đối với thí sinh dự tuyển đào tạo Văn bằng 2 chính quy tuyển mới, thời gian dừng nhận hồ sơ Công an thành phố sẽ thông báo tiếp nhận sau).</i><br><br>Bạn có muốn tìm hiểu về <b>Địa điểm và thủ tục đăng ký thi</b> không?",
+                txt: "<b>Thời gian đăng ký:</b> Từ ngày ra thông báo đến hết ngày <b>02/4/2026</b>.<br><i class='text-gray-600'>(Đối với thí sinh dự tuyển đào tạo Văn bằng 2 chính quy tuyển mới, thời gian từ ngày ra thông báo đến hết ngày <b>05/6/2026).</b>.<br><i class='text-gray-600'></i><br><br>Bạn có muốn tìm hiểu về <b>Địa điểm và thủ tục đăng ký thi</b> không?",
                 btn: ["Địa điểm đăng ký?", "Thủ tục đăng ký?"]
             },
             theluc: {
@@ -225,7 +225,22 @@
                 if (txt.includes("xét tuyển như thế nào") || txt.includes("cách thức xét tuyển") || txt.includes("xét tuyển")) {
                     response = "<b>Phương thức xét Đại học:</b><br>• PT1: Tuyển thẳng theo quy chế BGD&ĐT và BCA.<br>• PT2: Xét chứng chỉ ngoại ngữ quốc tế.<br>• PT3: Xét kết quả thi THPT + Điểm bài thi BCA.";
                 } else if (txt.includes("chỉ tiêu từng trường")) {
-                    response = "<b>CHỈ TIÊU CÁC TRƯỜNG CAND (Tổng: 530):</b><br>• <b>T01 - HV An ninh nhân dân:</b> 130 CT (NV An ninh: 100, ATTT: 30)<br>• <b>T02 - HV Cảnh sát nhân dân:</b> 100 CT (Phía Bắc)<br>• <b>T04 - ĐH An ninh nhân dân:</b> 100 CT (Phía Nam)<br>• <b>T05 - ĐH Cảnh sát nhân dân:</b> 100 CT (Phía Nam)<br>• <b>T06 - ĐH PCCC:</b> 50 CT (Toàn quốc)<br>• <b>T07 - HV Kỹ thuật & Công nghệ AN:</b> 50 CT (Toàn quốc)<br><br><i>👉 Bạn có thể xem bảng phân bổ chi tiết Nam/Nữ trong menu <b>Dữ liệu gốc (Góc trên bên phải)</b>.</i>";
+                   response = "<b>CHỈ TIÊU CÁC TRƯỜNG CAND (Tổng: 530):</b><br>" +
+           "• <b>T01 - HV An ninh nhân dân:</b><br>" +
+           "&nbsp;&nbsp;&nbsp;+ Phía Nam: 75 CT (Ngành An ninh mạng & PCTP công nghệ cao).<br>" +
+           "&nbsp;&nbsp;&nbsp;+ Toàn quốc: 100 CT (Ngành CNTT hợp tác ĐH Bách khoa Hà Nội).<br>" +
+           "• <b>T03 - HV Chính trị CAND:</b> 50 CT (Ngành Xây dựng Đảng & chính quyền nhà nước).<br>" +
+               "• <b>T04 - ĐH An ninh nhân dân:</b> 220 CT (Toàn bộ chỉ tiêu Phía Nam).<br>" +
+               "• <b>T05 - ĐH Cảnh sát nhân dân:</b> 300 CT (Toàn bộ chỉ tiêu Phía Nam).<br>" +
+               "• <b>T06 - ĐH PCCC:</b> 100 CT (Ngành PCCC & Cứu nạn cứu hộ).<br>" +
+               "• <b>T07 - HV Kỹ thuật & Công nghệ AN:</b> 100 CT (Nhóm ngành Kỹ thuật - Hậu cần).<br><br>" +
+              "• <b>Chỉ tiêu bổ sung (Toàn quốc):</b><br>" +
+               "&nbsp;&nbsp;&nbsp;+ Y khoa (Gửi đào tạo Học viện Quân y): 50 CT.<br>" +
+                "&nbsp;&nbsp;&nbsp;+ Y Khoa (gửi đào tạo tại Trường Đại học Y dược, Đại học Quốc gia Hà Nội): 30 CT.<br>" +
+                 "&nbsp;&nbsp;&nbsp;+ Kỹ thuật điện tử, viễn thông (gửi đào tạo tại Học viện Kỹ thuật Mật mã): 20 CT.<br>" +
+               "&nbsp;&nbsp;&nbsp;+ Cử nhân Tiếng Anh (T01): 50 CT.<br>" +
+               "&nbsp;&nbsp;&nbsp;+ Cử nhân Tiếng Trung Quốc (T01): 50 CT.<br><br>" +
+           "<i>👉 Chi tiết Nam/Nữ xem tại menu <b>Dữ liệu gốc (Góc trên bên phải)</b>.</i>";
                 } else if (txt.includes("ngành đào tạo")) {
                     response = "<b>Ngành đào tạo VB2CA:</b><br>Tuyển sinh nhóm ngành Nghiệp vụ An ninh, Nghiệp vụ Cảnh sát, Phòng cháy chữa cháy và Cứu nạn cứu hộ, An toàn thông tin.";
                 } else if (txt.includes("lệ phí")) {
@@ -235,9 +250,17 @@
                 } else if (txt.includes("đối tượng tuyển thẳng")) {
                     response = "<b>Tuyển thẳng hệ Trung cấp:</b><br>Con đẻ của liệt sĩ CAND, thương binh CAND (tỷ lệ trên 81%), Anh hùng LLVTND... theo quy định hiện hành của Bộ Công an.";
                 } else if (txt.includes("địa điểm đăng ký")) {
-                    response = "<b>Địa điểm đăng ký sơ tuyển:</b><br>Tại Công an cấp huyện/thị xã/thành phố nơi đăng ký thường trú. Đối với công dân tại xã Tam Anh, vui lòng liên hệ trực tiếp trực ban Công an xã để được hướng dẫn cụ thể.";
-                } else if (txt.includes("thủ tục đăng ký")) {
-                    response = "<b>Thủ tục hồ sơ cơ bản:</b><br>1. Đơn tự nguyện phục vụ trong CAND.<br>2. Bản sao CCCD, Khai sinh.<br>3. Học bạ THPT (bản sao).<br>4. Giấy chứng nhận Đoàn viên/Đảng viên.";
+                    response = "<b>Địa điểm đăng ký sơ tuyển:</b><br>Công dân có nguyện vọng dự tuyển vào các trường CAND năm 2026 trực tiếp đến trụ sở Công an xã Tam Anh (thôn Bình An, xã Tam Anh, thành phố Đà Nẵng) để đăng ký. Mọi khó khăn, vướng mắc, đề nghị công dân liên hệ trực tiếp số điện thoại trực ban: 02353.551.113 hoặc trực tiếp qua đồng chí Đại úy Phạm Thị Trang, cán bộ Công an xã Tam Anh (SĐT: 0329.529.059) để được hướng dẫn.";
+              } else if (txt.includes("thủ tục đăng ký")) {
+    			response = "<b>Hồ sơ đăng ký sơ tuyển 2026:</b><br>" +
+               "• Phiếu đăng ký dự sơ tuyển vào các trường CAND năm 2026;<br>" +
+               "• Bản sao chứng thực Giấy khai sinh, Căn cước công dân;<br>" +
+               "• Bằng tốt nghiệp THPT và học bạ (đối với thí sinh đã tốt nghiệp);<br>" +
+               "• Học bạ lớp 10, 11 và bảng điểm HK I lớp 12 (đối với thí sinh đang học THPT);<br>" +
+               "• Giấy xác nhận Đoàn viên/Đảng viên;<br>" +
+               "• 14 ảnh thẻ 4x6; 06 ảnh thẻ 3x4;<br>" +
+               "• Quyết định xuất ngũ (đối với công dân hoàn thành NV CAND).<br><br>" +
+               "👉 <b>Ghi chú:</b> Mẫu phiếu đăng ký dự sơ tuyển năm 2026, công dân đến trực tiếp <b>Công an xã Tam Anh</b> để thực hiện.";
                 } else if (txt.includes("bmi") || txt.includes("chỉ số bmi quy định")) {
                     response = "<b>Chỉ số BMI (Body Mass Index):</b><br>Chỉ số BMI phải đạt từ <b>18.5</b> đến dưới <b>30</b>.<br><i>Công thức: BMI = Cân nặng (kg) / [Chiều cao (m) x Chiều cao (m)].</i>";
                 } else if (txt.includes("bệnh lý") || txt.includes("bệnh lý cấm tuyển")) {
