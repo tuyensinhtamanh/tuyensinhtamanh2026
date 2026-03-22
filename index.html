@@ -136,70 +136,138 @@
     </div>
 `,
 
-            health: `
-            <div class="h-[60vh] overflow-y-auto pr-2 pb-10 space-y-4 no-scrollbar">
-                <div class="border-l-4 border-red-600 bg-red-50 p-3 rounded-r-lg shadow-sm">
-                    <h4 class="font-bold text-red-700 text-xs uppercase mb-1"><i class="fas fa-notes-medical mr-1"></i> Kết luận nhanh</h4>
-                    <p class="text-[11px] leading-relaxed text-gray-800 uppercase font-bold">Đạt Loại 1 hoặc Loại 2</p>
-                    <p class="text-[11px] leading-relaxed text-gray-600">
-                        • KHÔNG ĐẠT nếu: BMI ngoài ngưỡng (18.5-30), mù màu, xăm trổ, ma túy, hoặc có 1 chỉ tiêu điểm 3 trở lên.
-                    </p>
-                </div>
+           health: `
+<div class="h-[65vh] overflow-y-auto pr-2 pb-10 no-scrollbar space-y-4 text-[11px] leading-relaxed text-gray-700">
+    <div class="bg-red-700 text-white p-3 rounded-lg text-center mb-4 shadow-md">
+        <h3 class="font-bold uppercase text-sm">SỨC KHỎE - THỂ LỰC TUYỂN SINH 2026</h3>
+        <p class="text-[10px]">TIÊU CHUẨN LÂM SÀNG & CẬN LÂM SÀNG</p>
+    </div>
 
-                <div class="border border-gray-200 rounded-lg p-3 bg-white shadow-sm text-[11px]">
-                    <h4 class="font-bold text-blue-800 uppercase mb-2 border-b pb-1">Chiều cao & BMI</h4>
-                    <table class="w-full mb-2">
-                        <tr class="font-bold text-gray-500"><td>Đối tượng</td><td>Nam</td><td>Nữ</td></tr>
-                        <tr class="border-t"><td>Chuẩn chung</td><td class="text-blue-700">1m64-1m95</td><td class="text-red-700">1m58-1m80</td></tr>
-                        <tr class="border-t"><td>Dân tộc thiểu số</td><td>≥ 1m62</td><td>≥ 1m56</td></tr>
-                        <tr class="border-t"><td>Đối tượng UT1</td><td>≥ 1m60</td><td>≥ 1m55</td></tr>
-                    </table>
-                    <p class="bg-blue-50 p-2 rounded italic">BMI yêu cầu: 18.5 ≤ BMI ≤ 30</p>
-                </div>
+    <details class="bg-white border border-red-200 rounded-lg shadow-sm" open>
+        <summary class="p-3 font-bold text-red-800 cursor-pointer list-none flex justify-between items-center bg-red-50 rounded-t-lg">
+            ⚕️ KẾT LUẬN NHANH: ĐỦ / KHÔNG ĐỦ ĐIỀU KIỆN <i class="fas fa-chevron-down text-[10px]"></i>
+        </summary>
+        <div class="p-3 border-t border-red-100">
+            • Nguyên tắc chung: phải đạt SỨC KHỎE LOẠI 1 hoặc LOẠI 2 và đáp ứng tiêu chuẩn đặc thù (chiều cao, BMI, thị lực, ngoại hình, xét nghiệm).<br>
+            • Thường KHÔNG ĐẠT khi: BMI < 18,5 hoặc > 30; thị lực/tật khúc xạ vượt ngưỡng; mù màu trục xanh-đỏ; có hình xăm/lỗ bấm không đúng; dương tính ma túy/tiền chất.<br><br>
+            <i>Lưu ý: Kết luận cuối cùng do Hội đồng khám/sơ tuyển. Nội dung này giúp thí sinh & phụ huynh tự kiểm tra trước khi đi khám.</i>
+        </div>
+    </details>
 
-                <div class="border border-gray-200 rounded-lg p-3 bg-white shadow-sm text-[11px]">
-                    <h4 class="font-bold text-blue-800 uppercase mb-2 border-b pb-1">Mắt & Ngoại hình</h4>
-                    <p>• <b>Thị lực:</b> Mỗi mắt 9-10/10. Cận/Viễn ≤ 3 diop. Loạn < 1 diop.</p>
-                    <p>• <b>Hình xăm:</b> Không có vết trổ/xăm (trừ xăm lông mày/môi ở nữ).</p>
-                    <p>• <b>Bấm lỗ:</b> Nam không có. Nữ không quá 01 lỗ/tai.</p>
-                </div>
+    <details class="bg-white border border-red-200 rounded-lg shadow-sm">
+        <summary class="p-3 font-bold text-red-800 cursor-pointer list-none flex justify-between items-center bg-red-50">
+            ⚕️ PHÂN LOẠI SỨC KHỎE (ĐIỂM 1–6) <i class="fas fa-chevron-down text-[10px]"></i>
+        </summary>
+        <div class="p-3 border-t border-red-100">
+            • Mỗi chỉ tiêu sức khỏe chấm điểm chẵn từ 1 đến 6 (1: rất tốt … 6: rất kém).<br>
+            • Phân loại theo “điểm xấu nhất”:<br>
+            &nbsp;&nbsp;– Loại 1: tất cả điểm 1<br>
+            &nbsp;&nbsp;– Loại 2: có ít nhất 1 chỉ tiêu điểm 2<br>
+            &nbsp;&nbsp;– Loại 3: có ít nhất 1 chỉ tiêu điểm 3 (thường là không đủ điều kiện nếu chỉ tuyển Loại 1–2)<br>
+            • Một số nội dung có quy định “không tính điểm khi phân loại” theo danh mục chấp nhận (Phụ lục X), tuy nhiên vẫn phải đối chiếu điều kiện áp dụng cụ thể.
+        </div>
+    </details>
 
-                <div class="border border-red-200 rounded-lg p-3 bg-white shadow-sm text-[11px]">
-                    <h4 class="font-bold text-red-700 uppercase mb-2 border-b pb-1 text-center">Lịch khám sức khỏe 2026</h4>
-                    <div class="space-y-2">
-                        <p>• <b>ĐH/Trung cấp:</b> Chưa có lịch cụ thể. Dự kiến giữa tháng 4/2026</p>
-                        <p>• <b>VB2CA:</b> Chưa có lịch cụ thể</p>
-                    </div>
-                </div>
+    <details class="bg-white border border-red-200 rounded-lg shadow-sm">
+        <summary class="p-3 font-bold text-red-800 cursor-pointer list-none flex justify-between items-center bg-red-50">
+            ⚕️ THỂ LỰC: CHIỀU CAO <i class="fas fa-chevron-down text-[10px]"></i>
+        </summary>
+        <div class="p-3 border-t border-red-100">
+            <b>Chuẩn chung (thường áp dụng):</b><br>
+            • Nam: 1m64–1m95    • Nữ: 1m58–1m80<br><br>
+            <b>Nhóm ưu tiên chiều cao:</b><br>
+            • Dân tộc thiểu số: Nam ≥1m62, Nữ ≥1m56<br>
+            • UT1: Nam ≥1m60, Nữ ≥1m55<br>
+            • Dân tộc thiểu số rất ít người: Nam ≥1m58, Nữ ≥1m52<br><br>
+            <i>Gợi ý: Nếu thuộc nhóm ưu tiên, nên chuẩn bị giấy tờ chứng minh đối tượng khi sơ tuyển.</i>
+        </div>
+    </details>
 
-                <div class="border border-yellow-200 rounded-lg p-3 bg-yellow-50 shadow-sm text-[11px]">
-                    <h4 class="font-bold text-yellow-800 uppercase mb-2 border-b border-yellow-200 pb-1 text-center">Ngưỡng đạt thể lực</h4>
-                    <div class="grid grid-cols-2 gap-2 text-[10px]">
-                        <div class="p-1 bg-white rounded"><b>Bật xa:</b> N ≥ 2.2m | Nữ ≥ 1.5m</div>
-                        <div class="p-1 bg-white rounded"><b>Chạy 100m:</b> N ≤ 16s | Nữ ≤ 20s</div>
-                        <div class="p-1 bg-white rounded"><b>Chạy bền:</b> N 1.5km: 7'30 | Nữ 800m: 5'30</div>
-                        <div class="p-1 bg-white rounded"><b>Xà đơn:</b> Nam ≥ 12 lần</div>
-                    </div>
-                    </div>
+    <details class="bg-white border border-red-200 rounded-lg shadow-sm">
+        <summary class="p-3 font-bold text-red-800 cursor-pointer list-none flex justify-between items-center bg-red-50">
+            ⚕️ BMI (BẮT BUỘC) <i class="fas fa-chevron-down text-[10px]"></i>
+        </summary>
+        <div class="p-3 border-t border-red-100">
+            • Yêu cầu: 18,5 ≤ BMI ≤ 30.<br>
+            • Không đạt nếu BMI < 18,5 hoặc BMI > 30.<br>
+            • Công thức: BMI = cân nặng (kg) / [chiều cao (m)]².<br><br>
+            <i>Tip: Nếu đang gầy/béo, nên điều chỉnh ít nhất 4–12 tuần trước sơ tuyển (ăn ngủ, tập luyện, tăng/giảm cân an toàn).</i>
+        </div>
+    </details>
 
-                <div class="bg-gray-100 p-3 rounded-lg text-[10px]">
-                    <h4 class="font-bold mb-1 uppercase text-gray-700">Các trường hợp có thể chấp nhận:</h4>
-                  <div class="bg-gray-100 p-3 rounded-lg text-[10px] leading-relaxed">
-      <ul class="list-disc pl-4 space-y-1 text-gray-600">
-        <li>03–04 răng viêm tủy/hoại tử/viêm quanh cuống đã điều trị ổn định.</li>
-        <li>Lệch vách ngăn/dị dạng mũi không rối loạn hô hấp & phát âm.</li>
-        <li>Loét dạ dày–tá tràng đã điều trị lành.</li>
-        <li>Viêm ruột thừa đã mổ > 04 tuần, kết quả tốt.</li>
-        <li>Thoát vị bẹn đã mổ tốt > 01 năm.</li>
-        <li>Trĩ ngoại 01 búi 0,5–1 cm (một số trường hợp) hoặc trĩ đã mổ tốt.</li>
-        <li>Một số nang/sỏi nhỏ ở gan–thận theo kích thước cho phép; viêm da tiếp xúc; viêm nang lông ở vùng không lộ…</li>
-        <li>Nang buồng trứng sinh lý; mổ lấy thai 1–2 lần không biến chứng (đối với nữ).</li>
-    </ul>
-    <p class="mt-2 italic text-red-700 font-semibold">(Nội dung “chấp nhận” còn phụ thuộc kết luận thực tế và điều kiện áp dụng cụ thể.)</p>
+    <details class="bg-white border border-red-200 rounded-lg shadow-sm">
+        <summary class="p-3 font-bold text-red-800 cursor-pointer list-none flex justify-between items-center bg-red-50">
+            ⚕️ MẮT: THỊ LỰC & TẬT KHÚC XẠ <i class="fas fa-chevron-down text-[10px]"></i>
+        </summary>
+        <div class="p-3 border-t border-red-100">
+            <b>Thị lực không kính:</b><br>
+            • Mỗi mắt 09–10/10, tổng 2 mắt ≥18/10.<br><br>
+            <b>Nếu có tật khúc xạ:</b><br>
+            • Cận/viễn: mỗi mắt ≤ 03 đi-ốp<br>
+            • Loạn: loạn sinh lý hoặc < 01 đi-ốp/mắt<br>
+            • Qua kính: 1 mắt ≥09/10, tổng 2 mắt ≥19/10<br><br>
+            <i>Khuyến nghị: đi khám mắt trước sơ tuyển để đo đi-ốp chuẩn, tránh “đo lệch” gây rơi loại.</i>
+        </div>
+    </details>
+
+    <details class="bg-white border border-red-200 rounded-lg shadow-sm">
+        <summary class="p-3 font-bold text-red-800 cursor-pointer list-none flex justify-between items-center bg-red-50">
+            ⚕️ MÙ MÀU & NGOẠI HÌNH <i class="fas fa-chevron-down text-[10px]"></i>
+        </summary>
+        <div class="p-3 border-t border-red-100 space-y-2">
+            <p>• <b>Mù màu:</b> Mù màu trục xanh lá–đỏ (dù nhẹ) thường làm giảm loại sức khỏe, rủi ro rất cao không đạt nếu tuyển chỉ nhận Loại 1–2. Gợi ý: test sớm bằng bảng Ishihara tại cơ sở khám mắt để biết chắc.</p>
+            <p>• <b>Hình xăm:</b> không có vết trổ/vết xăm (kể cả phun xăm). Ngoại lệ thường gặp: nữ phun/xăm thẩm mỹ lông mày, môi.</p>
+            <p>• <b>Bấm lỗ:</b> Nam: không bấm tai/mũi/vị trí khác (lỗ đã liền sẹo có thể được xem xét). Nữ: không có từ 02 lỗ trở lên trên 01 tai; không bấm mũi/vị trí khác.</p>
+            <p>• <b>Da – sẹo:</b> không rối loạn sắc tố (trừ nám má); không có sẹo lồi co kéo ở vùng hay lộ (đầu/mặt/cổ/cẳng tay/bàn tay/bàn chân).</p>
+            <p>• <b>Tóc:</b> màu & kiểu tóc bình thường theo điều lệnh.</p>
+        </div>
+    </details>
+
+    <details class="bg-white border border-red-200 rounded-lg shadow-sm">
+        <summary class="p-3 font-bold text-red-800 cursor-pointer list-none flex justify-between items-center bg-red-50">
+            ⚕️ XÉT NGHIỆM & CẬN LÂM SÀNG <i class="fas fa-chevron-down text-[10px]"></i>
+        </summary>
+        <div class="p-3 border-t border-red-100 space-y-2">
+            <p>• <b>Ma túy/Tiền chất:</b> Yêu cầu không nghiện và không dương tính. Thường kiểm tra bằng xét nghiệm nước tiểu.</p>
+            <p>• <b>Xét nghiệm máu:</b> công thức máu; glucose; AST/ALT; ure/creatinin; HIV; HBsAg; anti-HCV...</p>
+            <p>• <b>Chẩn đoán hình ảnh:</b> X-quang tim phổi; siêu âm ổ bụng; điện tim.</p>
+            <i>Lưu ý: có thể chỉ định thêm xét nghiệm/cận lâm sàng khác để kết luận.</i>
+        </div>
+    </details>
+
+    <details class="bg-white border border-red-200 rounded-lg shadow-sm">
+        <summary class="p-3 font-bold text-red-800 cursor-pointer list-none flex justify-between items-center bg-red-50">
+            ⚕️ KIỂM TRA THỂ LỰC <i class="fas fa-chevron-down text-[10px]"></i>
+        </summary>
+        <div class="p-3 border-t border-red-100 space-y-2">
+            <p><b>Yêu cầu:</b> Áp dụng với thí sinh đủ điều kiện dự tuyển đại học CAND. Buổi sáng: 07h00. Buổi chiều: 15h00. Thí sinh có mặt trước 15 phút, mặc trang phục thể thao, đi giày thể thao.</p>
+            <p><b>Ngưỡng đạt:</b> Bật xa ≥ 2,2m (N), 1,5m (Nữ); Chạy 100m ≤ 16s (N), 20s (Nữ); Chạy bền 1500m ≤ 7'30 (N), 800m ≤ 5'30 (Nữ); Co tay xà đơn ≥ 12 lần (Nam).</p>
+            <p><b>Địa điểm:</b><br>
+            - 20/4 - 21/4/2026: TT Văn hóa và Điện ảnh tỉnh Quảng Trị, đường Trần Phú, phường Đồng Hới.<br>
+            - 28/4 - 29/4/2026: Trụ sở phía Nam Công an tỉnh Quảng Trị, đường Điện Biên Phủ, phường Nam Đông Hà.</p>
+        </div>
+    </details>
+
+    <details class="bg-white border border-red-200 rounded-lg shadow-sm">
+        <summary class="p-3 font-bold text-red-800 cursor-pointer list-none flex justify-between items-center bg-red-50 rounded-b-lg">
+            ⚕️ CÁC TRƯỜNG HỢP CÓ THỂ CHẤP NHẬN <i class="fas fa-chevron-down text-[10px]"></i>
+        </summary>
+        <div class="p-3 border-t border-red-100">
+            <ul class="list-disc pl-4 space-y-1">
+                <li>03–04 răng viêm tủy/hoại tử/viêm quanh cuống đã điều trị ổn định.</li>
+                <li>Lệch vách ngăn/dị dạng mũi không rối loạn hô hấp & phát âm.</li>
+                <li>Loét dạ dày–tá tràng đã điều trị lành.</li>
+                <li>Viêm ruột thừa đã mổ > 04 tuần, kết quả tốt.</li>
+                <li>Thoát vị bẹn đã mổ tốt > 01 năm.</li>
+                <li>Trĩ ngoại 01 búi 0,5–1 cm (một số trường hợp) hoặc trĩ đã mổ tốt.</li>
+                <li>Một số nang/sỏi nhỏ ở gan–thận theo kích thước cho phép.</li>
+                <li>Nang buồng trứng sinh lý; mổ lấy thai 1–2 lần không biến chứng (nữ).</li>
+            </ul>
+            <p class="mt-2 italic text-red-700">(Nội dung “chấp nhận” còn phụ thuộc kết luận thực tế và điều kiện áp dụng cụ thể.)</p>
+        </div>
+    </details>
 </div>
-                </div>
-            </div>
-        `,
+`,
             info: `
 <div class="h-[65vh] overflow-y-auto pr-2 pb-10 no-scrollbar space-y-3">
     <div class="bg-red-700 text-white p-3 rounded-lg text-center mb-4 shadow-md">
@@ -335,7 +403,7 @@
            "• <b>T03 - HV Chính trị CAND:</b> 50 CT (Ngành Xây dựng Đảng & chính quyền nhà nước).<br>" +
                "• <b>T04 - ĐH An ninh nhân dân:</b> 220 CT (Toàn bộ chỉ tiêu Phía Nam).<br>" +
                "• <b>T05 - ĐH Cảnh sát nhân dân:</b> 300 CT (Toàn bộ chỉ tiêu Phía Nam).<br>" +
-               "• <b>T06 - ĐH PCCC:</b> 100 CT (Ngành PCCC & Cứu nạn cứu hộ).<br>" +
+               "• <b>T06 - ĐH PCCC:</b> 100 CT phía Nam (Ngành PCCC & Cứu nạn cứu hộ).<br>" +
                "• <b>T07 - HV Kỹ thuật & Công nghệ AN:</b> 100 CT (Nhóm ngành Kỹ thuật - Hậu cần).<br><br>" +
               "• <b>Chỉ tiêu bổ sung (Toàn quốc):</b><br>" +
                "&nbsp;&nbsp;&nbsp;+ Y khoa (Gửi đào tạo Học viện Quân y): 50 CT.<br>" +
