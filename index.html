@@ -22,12 +22,21 @@
 </head>
 <body class="max-w-md mx-auto shadow-2xl min-h-screen flex flex-col bg-white relative">
 
-    <header class="header-red text-white p-5 text-center relative">
-        <button onclick="toggleOverlay()" class="absolute right-4 top-5 text-xl"><i class="fas fa-bars"></i></button>
-        <p class="text-[10px] font-bold tracking-widest opacity-80">TRỢ LÝ ẢO</p>
-        <h1 class="text-xl font-bold uppercase">Tuyển sinh CAND 2026</h1>
-        <p class="text-[11px] text-yellow-300">CÔNG AN XÃ TAM ANH</p>
-    </header>
+  <header class="header-red text-white p-4 flex items-center gap-3 relative shadow-lg">
+    <div class="w-14 h-14 rounded-full border-2 border-yellow-400 overflow-hidden bg-white shrink-0 shadow-md">
+        <img src="https://raw.githubusercontent.com/tuyensinhtamanh/tuyensinhtamanh2026/main/avatar.png" alt="Avatar" class="w-full h-full object-cover">
+    </div>
+    
+    <div class="text-left flex-grow">
+        <p class="text-[11px] font-bold tracking-widest opacity-90 leading-none mb-1">TRỢ LÝ ẢO</p>
+        <h1 class="text-base font-bold uppercase leading-tight">Tuyển sinh CAND 2026</h1>
+        <p class="text-[15px] text-yellow-300 font-semibold italic">Công an xã Tam Anh</p>
+    </div>
+    
+    <button onclick="toggleOverlay()" class="text-xl px-2 hover:text-yellow-300 transition-colors">
+        <i class="fas fa-bars"></i>
+    </button>
+</header>
 
     <main id="chatBox" class="chat-area p-4 overflow-y-auto flex flex-col gap-4 bg-slate-50">
         <div class="bot-msg p-4 max-w-[90%] border">
@@ -158,13 +167,8 @@
                 <div class="border border-red-200 rounded-lg p-3 bg-white shadow-sm text-[11px]">
                     <h4 class="font-bold text-red-700 uppercase mb-2 border-b pb-1 text-center">Lịch khám sức khỏe 2026</h4>
                     <div class="space-y-2">
-                        <p>• <b>ĐH/Trung cấp:</b> 16/4 - 05/5/2026</p>
-                        <p>• <b>VB2CA:</b> 29/6 - 03/7/2026</p>
-                        <div class="bg-gray-50 p-2 rounded">
-                            <b>Địa điểm:</b><br>
-                            - Bệnh xá 02 (31 Phan Chu Trinh, Đồng Hới)<br>
-                            - Bệnh xá 01 (Đường Điện Biên Phủ, Nam Đông Hà)
-                        </div>
+                        <p>• <b>ĐH/Trung cấp:</b> Chưa có lịch cụ thể. Dự kiến giữa tháng 4/2026</p>
+                        <p>• <b>VB2CA:</b> Chưa có lịch cụ thể</p>
                     </div>
                 </div>
 
@@ -180,7 +184,7 @@
                 </div>
 
                 <div class="bg-gray-100 p-3 rounded-lg text-[10px]">
-                    <h4 class="font-bold mb-1 uppercase text-gray-700">Các trường hợp có thể chấp nhận (Phụ lục X):</h4>
+                    <h4 class="font-bold mb-1 uppercase text-gray-700">Các trường hợp có thể chấp nhận:</h4>
                     <p class="italic">Răng viêm tủy ổn định; Lệch vách ngăn mũi; Loét dạ dày lành; Mổ ruột thừa > 4 tuần; Sỏi thận nhỏ; Mổ lấy thai 1-2 lần...</p>
                 </div>
             </div>
@@ -204,7 +208,7 @@
             renderMsg(text, 'user');
             
             setTimeout(() => {
-                let response = "Thông tin chi tiết đang được cán bộ PX01 cập nhật. Đồng chí vui lòng xem trong mục <b>Dữ liệu gốc</b>.";
+                let response = "Thông tin chi tiết đang được chúng tôi cập nhật. Vui lòng xem trong mục <b>Dữ liệu gốc</b>.";
                 const txt = text.toLowerCase();
 
                 if (txt.includes("xét tuyển như thế nào") || txt.includes("cách thức xét tuyển") || txt.includes("xét tuyển")) {
