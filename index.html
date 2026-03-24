@@ -124,11 +124,11 @@
                 btn: ["Tổ hợp trung cấp?", "Đối tượng tuyển thẳng?"]
             },
             thoigian: {
-                txt: "<b>Thời gian đăng ký:</b> Từ ngày ra thông báo đến hết ngày <b>02/4/2026</b>.<br><i class='text-gray-600'>(Đối với thí sinh dự tuyển đào tạo Văn bằng 2 chính quy tuyển mới, thời gian từ ngày ra thông báo đến hết ngày <b>05/6/2026).</b>.<br><i class='text-gray-600'></i><br><br>Bạn có muốn tìm hiểu về <b>Địa điểm và thủ tục đăng ký thi</b> không?",
+                txt: "<b>Thời gian đăng ký:</b> Từ ngày ra thông báo đến hết ngày <b>15/4/2026</b>.<br><i class='text-gray-600'>(Đối với thí sinh dự tuyển đào tạo Văn bằng 2 chính quy tuyển mới, thời gian từ ngày ra thông báo đến hết ngày <b>15/6/2026).</b>.<br><i class='text-gray-600'></i><br><br>Bạn có muốn tìm hiểu về <b>Địa điểm và thủ tục đăng ký thi</b> không?",
                 btn: ["Địa điểm đăng ký?", "Thủ tục đăng ký?"]
             },
             theluc: {
-                txt: "<b>Tiêu chuẩn sức khỏe:</b><br>• Nam: Cao từ 1m64 trở lên.<br>• Nữ: Cao từ 1m58 trở lên.<br>• Thị lực: Không quá 3 diop, không loạn thị.<br>Bạn có muốn xem chi tiết về <b>Chỉ số BMI</b> không?",
+                txt: "<b>Tiêu chuẩn sức khỏe:</b><br>• Nam: Cao từ 1m64 trở lên.<br>• Nữ: Cao từ 1m58 trở lên.<br>• Thị lực: Không quá 3 diop, loạn thị không quá 01 diop.<br>Bạn có muốn xem chi tiết về <b>Chỉ số BMI</b> không?",
                 btn: ["Chỉ số BMI quy định?", "Bệnh lý cấm tuyển?"]
             }
         };
@@ -555,7 +555,7 @@
                 } else if (txt.includes("bmi") || txt.includes("chỉ số bmi quy định")) {
                     response = "<b>Chỉ số BMI (Body Mass Index):</b><br>Chỉ số BMI phải đạt từ <b>18.5</b> đến dưới <b>30</b>.<br><i>Công thức: BMI = Cân nặng (kg) / [Chiều cao (m) x Chiều cao (m)].</i>";
                 } else if (txt.includes("bệnh lý") || txt.includes("bệnh lý cấm tuyển")) {
-                    response = "<b>Một số điều kiện sức khỏe cấm tuyển:</b><br>Viêm gan B, C; các bệnh về tim mạch; dị tật bẩm sinh; hình xăm/chữ xăm lộ rõ; sứt môi, hở hàm ếch... (Theo Thông tư 62/2023/TT-BCA).";
+                    response = "<b>Một số điều kiện sức khỏe cấm tuyển:</b><br>Viêm gan B, C; các bệnh về tim mạch; dị tật bẩm sinh; hình xăm/chữ xăm lộ rõ; sứt môi, hở hàm ếch... (Theo Thông tư 62/2023/TT-BCA và Thông tư 131/2025/TT-BCA)";
                 }
 
                 // Lệnh bắt buộc phải có để in câu trả lời ra màn hình
